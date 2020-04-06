@@ -4,7 +4,7 @@ const files = [
   'index.html',
   'pwa.js',
   'certificate.js',
-  // 'certificate.css', // Not working, hash not added later on
+  // 'certificate.css', // @todo Not working, hash not added later on
   'certificate.pdf',
   'logo_dnum.svg',
   'MIN_Interieur_RVB.svg',
@@ -64,7 +64,7 @@ self.addEventListener('fetch', function (event) {
       return cache.match(url.pathname === swLoc ? 'index.html' : event.request)
         .then(function (response) {
           return response || fetch(event.request).then(function (response) {
-            // Add request in cache for later use, basically file we missed in first list
+            // Add request in cache for later use, basically file we missed in first list or fonts file
             cache.put(event.request, response.clone())
             return response
           })

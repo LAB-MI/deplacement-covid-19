@@ -198,7 +198,9 @@ function getAndSaveReasons () {
   const values = $$('input[name="field-reason"]:checked')
     .map(x => x.value)
     .join('-')
-  localStorage.setItem('reasons', values)
+  if ($('#checkbox-sauvegarde:checked')) {
+    localStorage.setItem('reasons', values)
+  }
   return values
 }
 
@@ -224,7 +226,9 @@ const snackbar = $('#snackbar')
 $('#form-profile').addEventListener('submit', async event => {
   event.preventDefault()
 
-  saveProfile()
+  if ($('#checkbox-sauvegarde:checked')) {
+    saveProfile()
+  }
   const reasons = getAndSaveReasons()
   const pdfBlob = await generatePdf(getProfile(), reasons)
   downloadBlob(pdfBlob, 'attestation.pdf')

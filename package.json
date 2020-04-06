@@ -1,0 +1,56 @@
+{
+  "name": "deplacement-covid-19",
+  "version": "0.0.1",
+  "description": "Générateur d'attestation de déplacement dérogatoire'",
+  "main": "certificate.js",
+  "scripts": {
+    "lint": "eslint ./*.js",
+    "start": "VERSION=${VERSION:-localversion} parcel index.html robots.txt",
+    "prebuild": "npm run lint && rimraf dist",
+    "build": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-covid-19} ; parcel build --public-url ${PUBLIC_URL} index.html robots.txt",
+    "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-covid-19} react-snap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lab-mi/deplacement-codiv-19"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lab-mi/deplacement-covid-19/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "parcel-bundler": "^1.12.4",
+    "postcss-current-selector": "0.0.3",
+    "postcss-nested": "^4.2.1",
+    "postcss-nested-ancestors": "^2.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "react-snap": "^1.23.0",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "pdf-lib": "^1.4.1",
+    "qrcode": "^1.4.4"
+  },
+  "browserslist": [
+    "last 5 versions"
+  ],
+  "reactSnap": {
+    "source": "dist",
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    }
+  }
+}

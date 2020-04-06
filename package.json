@@ -7,8 +7,8 @@
     "lint": "eslint ./*.js",
     "start": "VERSION=${VERSION:-localversion} parcel index.html robots.txt",
     "prebuild": "npm run lint && rimraf dist",
-    "build": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-codiv-19} ; parcel build --public-url ${PUBLIC_URL} index.html robots.txt sw.js",
-    "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-codiv-19} react-snap"
+    "build": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-covid-19} ; parcel build --public-url ${PUBLIC_URL} index.html robots.txt sw.js",
+    "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-covid-19} react-snap"
   },
   "repository": {
     "type": "git",

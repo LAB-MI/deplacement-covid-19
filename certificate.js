@@ -8,7 +8,6 @@ import './main.css'
 
 const $ = (...args) => document.querySelector(...args)
 const $$ = (...args) => [...document.querySelectorAll(...args)]
-var year, month, day
 
 const generateQR = async text => {
   try {
@@ -24,29 +23,13 @@ const generateQR = async text => {
   }
 }
 
-function pad (str) {
-  return String(str).padStart(2, '0')
-}
-
-function setDateNow (date) {
-  year = date.getFullYear()
-  month = pad(date.getMonth() + 1) // Les mois commencent à 0
-  day = pad(date.getDate())
-}
-
 document.addEventListener('DOMContentLoaded', setReleaseDateTime)
 
 function setReleaseDateTime () {
-  const loadedDate = new Date()
-  setDateNow(loadedDate)
   const releaseDateInput = document.querySelector('#field-datesortie')
-  releaseDateInput.value = `${year}-${month}-${day}`
-
-  const hour = pad(loadedDate.getHours())
-  const minute = pad(loadedDate.getMinutes())
-
+  releaseDateInput.value = new Date().toLocaleDateString('fr-CA')
   const releaseTimeInput = document.querySelector('#field-heuresortie')
-  releaseTimeInput.value = `${hour}:${minute}`
+  releaseTimeInput.value = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
 }
 
 function saveProfile () {
@@ -81,13 +64,8 @@ function idealFontSize (font, text, maxWidth, minSize, defaultSize) {
 }
 
 async function generatePdf (profile, reasons) {
-  const generatedDate = new Date()
-  setDateNow(generatedDate)
-  const creationDate = `${day}/${month}/${year}`
-
-  const hour = pad(generatedDate.getHours())
-  const minute = pad(generatedDate.getMinutes())
-  const creationHour = `${hour}h${minute}`
+  const creationDate = new Date().toLocaleDateString('fr-FR')
+  const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', 'h')
 
   const { lastname, firstname, birthday, lieunaissance, address, zipcode, town, datesortie, heuresortie } = profile
   const releaseHours = String(heuresortie).substring(0, 2)
@@ -215,6 +193,7 @@ if (isFacebookBrowser()) {
 function addSlash () {
   this.value = this.value.replace(/^(\d{2})$/g, '$1/')
   this.value = this.value.replace(/^(\d{2})\/(\d{2})$/g, '$1/$2/')
+  this.value = this.value.replace(/\/\//g, '/')
 }
 
 $('#field-birthday').addEventListener('keyup', addSlash)
@@ -227,7 +206,7 @@ $('#form-profile').addEventListener('submit', async event => {
   saveProfile()
   const reasons = getAndSaveReasons()
   const pdfBlob = await generatePdf(getProfile(), reasons)
-  downloadBlob(pdfBlob, 'attestation.pdf')
+  downloadBlob(pdfBlob, 'attestation-' + Date.now() + '.pdf')
 
   snackbar.classList.remove('d-none')
   setTimeout(() => snackbar.classList.add('show'), 100)

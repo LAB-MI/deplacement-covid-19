@@ -28,7 +28,7 @@
 
     <title>COVID-19 – Générateur d'attestation de déplacement dérogatoire</title>
 </head>
-<body>
+<body data-sw="sw.js">
     <header class="wrapper">
         <img class="logo" src="/MIN_Interieur_RVB.svg" alt="">
         <div>
@@ -268,6 +268,10 @@
         sein de ce navigateur ! Merci d'ouvrir Chrome sur Android ou bien Safari sur iOS.
     </div>
 
+    <button id="installBut" type="submit" class="btn btn-primary btn-pwa hide"><span class="btn-text">Installer</span></button>
+    <button id="refreshBut" type="submit" class="btn btn-primary btn-pwa hide"><span class="btn-text">Mettre à jour</span></button>
+
     <script src="./certificate.js"></script>
+    <script src="./pwa.js"></script>
 </body>
 </html>

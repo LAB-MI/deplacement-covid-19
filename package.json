@@ -7,8 +7,8 @@
     "lint": "eslint ./*.js",
     "start": "VERSION=${VERSION:-localversion} parcel index.html robots.txt",
     "prebuild": "npm run lint && rimraf dist",
-    "build": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-covid-19} ; parcel build --public-url ${PUBLIC_URL} index.html robots.txt",
-    "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-covid-19} react-snap"
+    "build": "PUBLIC_URL=${PUBLIC_URL:-/lab/deplacement-codiv-19/dist} ; parcel build --public-url ${PUBLIC_URL} index.html robots.txt sw.js",
+    "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/lab/deplacement-codiv-19/dist} react-snap"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "parcel-bundler": "^1.12.4",
+    "parcel-plugin-sw-asset-urls": "^0.1.2",
     "postcss-current-selector": "0.0.3",
     "postcss-nested": "^4.2.1",
     "postcss-nested-ancestors": "^2.0.0",

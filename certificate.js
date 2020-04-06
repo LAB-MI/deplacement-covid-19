@@ -5,6 +5,7 @@ import QRCode from 'qrcode'
 
 import pdfBase from './certificate.pdf'
 import './main.css'
+import './pwa.css'
 
 const $ = (...args) => document.querySelector(...args)
 const $$ = (...args) => [...document.querySelectorAll(...args)]

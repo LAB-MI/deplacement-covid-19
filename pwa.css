@@ -1,0 +1,10 @@
+.hide  {
+    display: none;
+}
+.btn-pwa {
+    position: fixed;
+    bottom: 10px;
+    width: 120px;
+    text-align: center;
+    left: calc(50vw - 60px);
+}

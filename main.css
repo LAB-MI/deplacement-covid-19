@@ -55,6 +55,17 @@ h2 {
   font-size: large;
 }
 
+#noscript {
+    margin: 250px 0 250px 0;
+    background-color: white;
+
+    p {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.3em;
+    }
+}
+
 footer {
   margin-top: 40px;
 }

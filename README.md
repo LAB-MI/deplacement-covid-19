@@ -5,8 +5,8 @@
 ### Installer le projet
 
 ```console
-$ git clone https://github.com/lab-mi/deplacement-codiv-19.git
-$ cd deplacement-codiv-19
+$ git clone https://github.com/lab-mi/deplacement-covid-19.git
+$ cd deplacement-covid-19
 $ npm i
 $ npm start
 ```

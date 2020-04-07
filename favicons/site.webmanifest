@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "COVID-19 – Générateur d'attestation de déplacement dérogatoire",
+    "short_name": "Attestation de déplacement",
     "icons": [
         {
             "src": "android-chrome-192x192.png",
@@ -13,6 +13,7 @@
             "type": "image/png"
         }
     ],
+    "start_url": "/deplacement-covid-19/",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone"

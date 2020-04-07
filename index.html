@@ -48,8 +48,17 @@
         </div>
     </header>
 
-    <div class="wrapper">
+    <noscript>
+        <div id="noscript" class="d-flex align-items-center flex-column justify-content-center">
+            <p>
+                Pour pouvoir utiliser ce générateur, il vous faut préalablement activer JavaScript.<br />
+                <a href="https://www.enable-javascript.com/fr/">Cliquez ici</a> pour accéder aux instructions
+                pour activer JavaScript dans votre navigateur.
+            </p>
+        </div>
+    </noscript>
 
+    <div id="wrapper" class="wrapper d-none">
         <form id="form-profile">
             <h2 class="titre-2">Remplissez en ligne votre attestation numérique :</h2>
             
@@ -268,6 +277,11 @@
         sein de ce navigateur ! Merci d'ouvrir Chrome sur Android ou bien Safari sur iOS.
     </div>
 
+    <script>
+     document.addEventListener("DOMContentLoaded", function() {
+         document.querySelector("#wrapper").classList.remove("d-none");
+     });
+    </script>
     <script src="./certificate.js"></script>
 </body>
 </html>

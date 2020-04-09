@@ -56,22 +56,15 @@ function setReleaseDateTime () {
   releaseTimeInput.value = `${hour}:${minute}`
 }
 
-function saveProfile () {
+function getProfile () {
+  const fields = {}
   for (const field of $$('#form-profile input')) {
     if (field.id === 'field-datesortie') {
       var dateSortie = field.value.split('-')
-      localStorage.setItem(field.id.substring('field-'.length), `${dateSortie[2]}/${dateSortie[1]}/${dateSortie[0]}`)
+      fields[field.id.substring('field-'.length)] = `${dateSortie[2]}/${dateSortie[1]}/${dateSortie[0]}`
     } else {
-      localStorage.setItem(field.id.substring('field-'.length), field.value)
+      fields[field.id.substring('field-'.length)] = field.value
     }
-  }
-}
-
-function getProfile () {
-  const fields = {}
-  for (let i = 0; i < localStorage.length; i++) {
-    const name = localStorage.key(i)
-    fields[name] = localStorage.getItem(name)
   }
   return fields
 }
@@ -201,11 +194,10 @@ function downloadBlob (blob, fileName) {
   link.click()
 }
 
-function getAndSaveReasons () {
+function getReasons () {
   const values = $$('input[name="field-reason"]:checked')
     .map(x => x.value)
     .join('-')
-  localStorage.setItem('reasons', values)
   return values
 }
 
@@ -240,10 +232,8 @@ const snackbar = $('#snackbar')
 $('#generate-btn').addEventListener('click', async event => {
   event.preventDefault()
 
-  saveProfile()
-  const reasons = getAndSaveReasons()
+  const reasons = getReasons()
   const pdfBlob = await generatePdf(getProfile(), reasons)
-  localStorage.clear()
   downloadBlob(pdfBlob, 'attestation.pdf')
 
   snackbar.classList.remove('d-none')

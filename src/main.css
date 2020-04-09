@@ -64,6 +64,10 @@ canvas {
   border-radius: .25rem;
 }
 
+a {
+  color: #000191;
+}
+
 .wrapper {
   max-width: 800px;
   margin-left: auto;
@@ -187,12 +191,16 @@ input:valid+span:after {
 
 
 .btn-attestation {
-  padding: 0.8em;
+  padding: 0.9em;
   font-size: 1.2em;
   font-weight: bold;
   color: #ffffff;
   background-color: #000191;
   border-radius: 0.5em;
+}
+
+.btn-attestation:hover {
+  background-color: #3031C1;
 }
 
 .github {
@@ -360,8 +368,23 @@ input:valid+span:after {
   opacity: 1;
 }
 
+@media only screen and (min-width:600px) {
+    .hide-on-desktop, * [aria-labelledby='hide-on-desktop'] {
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+    }
+}
+
 .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+#update-alert {
+  position: fixed;
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
 }

@@ -1,13 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import { PDFDocument, StandardFonts } from 'pdf-lib'
-import QRCode from 'qrcode'
-
-import pdfBase from './certificate.pdf'
 import './main.css'
 
-const $ = (...args) => document.querySelector(...args)
-const $$ = (...args) => [...document.querySelectorAll(...args)]
+import { PDFDocument, StandardFonts } from 'pdf-lib'
+import QRCode from 'qrcode'
+import { library, dom } from '@fortawesome/fontawesome-svg-core'
+import { faEye, faFilePdf } from '@fortawesome/free-solid-svg-icons'
+
+import './check-updates'
+import { $, $$ } from './dom-utils'
+import pdfBase from './certificate.pdf'
+
+library.add(faEye, faFilePdf)
+
+dom.watch()
+
 var year, month, day
 
 const generateQR = async text => {
@@ -209,24 +216,34 @@ function isFacebookBrowser () {
 }
 
 if (isFacebookBrowser()) {
+  $('#alert-facebook').value = 'ATTENTION !! Vous utilisez actuellement le navigateur Facebook, ce générateur ne fonctionne pas correctement au sein de ce navigateur ! Merci d\'ouvrir Chrome sur Android ou bien Safari sur iOS.'
   $('#alert-facebook').classList.remove('d-none')
 }
 
 function addSlash () {
-  this.value = this.value.replace(/^(\d{2})$/g, '$1/')
-  this.value = this.value.replace(/^(\d{2})\/(\d{2})$/g, '$1/$2/')
+  $('#field-birthday').value = $('#field-birthday').value.replace(/^(\d{2})$/g, '$1/')
+  $('#field-birthday').value = $('#field-birthday').value.replace(/^(\d{2})\/(\d{2})$/g, '$1/$2/')
 }
 
-$('#field-birthday').addEventListener('keyup', addSlash)
+$('#field-birthday').onkeyup = function () {
+  const key = event.keyCode || event.charCode
+  if (key === 8 || key === 46) {
+    return false
+  } else {
+    addSlash()
+    return false
+  }
+}
 
 const snackbar = $('#snackbar')
 
-$('#form-profile').addEventListener('submit', async event => {
+$('#generate-btn').addEventListener('click', async event => {
   event.preventDefault()
 
   saveProfile()
   const reasons = getAndSaveReasons()
   const pdfBlob = await generatePdf(getProfile(), reasons)
+  localStorage.clear()
   downloadBlob(pdfBlob, 'attestation.pdf')
 
   snackbar.classList.remove('d-none')

@@ -5,8 +5,8 @@
 ### Installer le projet
 
 ```console
-$ git clone https://github.com/lab-mi/deplacement-codiv-19.git
-$ cd deplacement-codiv-19
+$ git clone https://github.com/lab-mi/deplacement-covid-19.git
+$ cd deplacement-covid-19
 $ npm i
 $ npm start
 ```
@@ -23,7 +23,8 @@ Le code à déployer sera dans le dossier `dist`
 
 Ce projet a été réalisé à partir d'un fork du dépôt [covid-19-certificate](https://github.com/nesk/covid-19-certificate) de [Johann Pardanaud](https://github.com/nesk).
 
-Les projets open source suivants ont été utilisés pour le développement de ce service :
+Les projets open source suivants ont été utilisés pour le développement de ce 
+service :
 
 - [PDF-LIB](https://pdf-lib.js.org/)
 - [qrcode](https://github.com/soldair/node-qrcode)

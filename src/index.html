@@ -30,7 +30,7 @@
 </head>
 <body>
     <header class="wrapper">
-        <img class="logo" src="/MIN_Interieur_RVB.svg" alt="">
+        <img class="logo" src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité.">
         <div>
             <h1 class="flex flex-wrap">
                 <span class="covid-title">
@@ -48,10 +48,13 @@
         </div>
     </header>
 
+    <p class="alert  alert-danger  d-none" role="alert" id="alert-facebook"></p>
+
     <div class="wrapper">
 
-        <form id="form-profile">
+        <form id="form-profile" accept-charset="UTF-8">
             <h2 class="titre-2">Remplissez en ligne votre attestation numérique :</h2>
+            <p class="text-alert">Tous les champs sont obligatoires.</p>
             
             <div class="form-group">
                 <label for="field-firstname" id="field-firstname-label">Prénom</label>
@@ -63,11 +66,10 @@
                         name="firstname"
                         autocomplete="given-name"
                         placeholder="Jean"
-                        aria-labelledby="field-firstname-label"
                         required
                         autofocus
                     >
-                    <span class="validity"></span>
+                    <span class="validity" aria-hidden="true"></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -82,11 +84,10 @@
                         name="lastname"
                         autocomplete="family-name"
                         placeholder="Dupont"
-                        aria-labelledby="field-lastname-label"
                         required
                         autofocus
                     >
-                    <span class="validity"></span>
+                    <span class="validity" aria-hidden="true"></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -96,6 +97,7 @@
                 <div class="input-group  align-items-center">
                     <input
                         type="text"
+                        pattern="^([0][1-9]|[1-2][0-9]|30|31)/([0][1-9]|10|11|12)/(19[0-9][0-9]|20[0-1][0-9]|2020)"
                         inputmode="numeric"
                         class="form-control"
                         id="field-birthday"
@@ -103,10 +105,9 @@
                         autocomplete="bday"
                         placeholder="01/01/1970"
                         maxlength="10"
-                        aria-labelledby="field-birthday-label"
                         required
                     >
-                    <span class="validity"></span>
+                    <span class="validity" aria-hidden="true"></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -119,11 +120,10 @@
                         class="form-control"
                         id="field-lieunaissance"
                         name="lieunaissance"
-                        aria-labelledby="field-lieunaissance-label"
                         placeholder="Lyon"
                         required
                     >
-                    <span class="validity"></span>
+                    <span class="validity" aria-hidden="true"></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -137,11 +137,10 @@
                         id="field-address"
                         name="address"
                         autocomplete="address-line1" 
-                        aria-labelledby="field-address-label"
                         placeholder="999 avenue de france"
                         required
                     >
-                    <span class="validity"></span>
+                    <span class="validity" aria-hidden="true"></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -155,11 +154,10 @@
                         id="field-town"
                         name="town"
                         autocomplete="address-level1"
-                        aria-labelledby="field-town-label"
                         placeholder="Paris"
                         required
                     >
-                    <span class="validity"></span>
+                    <span class="validity" aria-hidden="true"></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -168,85 +166,91 @@
                 <label for="field-zipcode" id="field-zipcode-label" >Code Postal</label>
                 <div class="input-group  align-items-center">
                     <input
-                        type="number"
+                        type="text"
+                        inputmode="numeric"
+                        pattern="[0-9]{5}"
                         min="00000"
                         max="99999"
                         class="form-control"
                         id="field-zipcode"
                         name="zipcode"
-                        autocomplete="zipcode" 
+                        autocomplete="postal-code" 
                         minlength="4"
                         maxlength="5"
-                        aria-labelledby="field-zipcode-label"
                         placeholder="75001"
                         required
                     >
-                    <span class="validity"></span>
+                    <span class="validity" aria-hidden="true"></span>
                 </div>
                 <p class="exemple"></p>
             </div>
             
-            <h3>Choisissez un motif de sortie</h3>
-            
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-travail" value="travail">
-                <label class="form-check-label" for="checkbox-travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu'ils sont indispensables à l'exercice d’activités ne pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant être différés.</label>
-            </div>
-
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-courses" value="courses">
-                <label class="form-check-label" for="checkbox-courses">Déplacements pour effectuer des achats de fournitures nécessaires à l’activité professionnelle et des achats de première nécessité dans des établissements dont les activités demeurent autorisées <a href="https://www.service-public.fr/particuliers/actualites/A13921" target="_blank">(liste sur gouvernement.fr)</a>.</label>
-            </div>
-            
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-sante" value="sante">
-                <label class="form-check-label" for="checkbox-sante">Consultations et soins ne pouvant être assurés à distance et ne pouvant être différés ; consultations et soins des patients atteints d'une affection de longue durée.</label>
-            </div>
-            
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-famille" value="famille">
-                <label class="form-check-label" for="checkbox-famille">Déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants.</label>
-            </div>
-            
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-sport" value="sport">
-                <label class="form-check-label" for="checkbox-sport">Déplacements brefs, dans la limite d'une heure quotidienne et dans un rayon maximal d'un kilomètre autour du domicile, liés soit à l'activité physique individuelle des personnes, à l'exclusion de toute pratique sportive collective et de toute proximité avec d'autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie.</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-judiciaire" value="judiciaire">
-                <label class="form-check-label" for="checkbox-judiciaire">Convocation judiciaire ou administrative.</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-missions" value="missions">
-                <label class="form-check-label" for="checkbox-missions">Participation à des missions d’intérêt général sur demande de l’autorité administrative.</label>
-            </div>
+            <fieldset>
+                <legend class="title-3">Choisissez le ou les motif(s) de sortie</legend>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-travail" value="travail">
+                    <label class="form-check-label" for="checkbox-travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu'ils sont indispensables à l'exercice d’activités ne pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant être différés.</label>
+                </div>
+    
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-courses" value="courses">
+                    <label class="form-check-label" for="checkbox-courses">Déplacements pour effectuer des achats de fournitures nécessaires à l’activité professionnelle et des achats de première nécessité dans des établissements dont les activités demeurent autorisées <a href="https://www.service-public.fr/particuliers/actualites/A13921" target="_blank">(liste sur gouvernement.fr)</a>.</label>
+                </div>
+                
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-sante" value="sante">
+                    <label class="form-check-label" for="checkbox-sante">Consultations et soins ne pouvant être assurés à distance et ne pouvant être différés ; consultations et soins des patients atteints d'une affection de longue durée.</label>
+                </div>
+                
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-famille" value="famille">
+                    <label class="form-check-label" for="checkbox-famille">Déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants.</label>
+                </div>
+                
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-sport" value="sport">
+                    <label class="form-check-label" for="checkbox-sport">Déplacements brefs, dans la limite d'une heure quotidienne et dans un rayon maximal d'un kilomètre autour du domicile, liés soit à l'activité physique individuelle des personnes, à l'exclusion de toute pratique sportive collective et de toute proximité avec d'autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-judiciaire" value="judiciaire">
+                    <label class="form-check-label" for="checkbox-judiciaire">Convocation judiciaire ou administrative.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-missions" value="missions">
+                    <label class="form-check-label" for="checkbox-missions">Participation à des missions d’intérêt général sur demande de l’autorité administrative.</label>
+                </div>
+            </fieldset>
             
             <div class="form-group">
                 <label for="field-datesortie">Date de sortie</label>
                 <div class="input-group  align-items-center">
                     <input type="date" class="form-control" id="field-datesortie" name="datesortie" placeholder="JJ/MM/YYYY" required>
-                    <span class="validity"></span>
+                    <span class="validity" aria-hidden="true"></span>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="field-heure">Heure de sortie</label>
+                <label for="field-heuresortie">Heure de sortie</label>
                 <div class="input-group  align-items-center">
                     <input type="time" class="form-control" id="field-heuresortie" name="heure" required>
-                    <span class="validity"></span>
+                    <span class="validity" aria-hidden="true"></span>
                 </div>
             </div>
             
             
             <p class="text-center mt-5">
-                <button type="submit" class="btn btn-primary btn-attestation"> <span class="btn-text">Générer mon attestation</span></button>
+                <button type="button" id="generate-btn" class="btn btn-primary btn-attestation"><span ><i class="fa fa-file-pdf inline-block mr-1"></i>  Générer mon attestation</span></button>
             </p>
+
             <div class="bg-primary  d-none" id="snackbar">
               L'attestation est téléchargée sur votre appareil.
             </div>
         </form>
     </div>
     <div class="">
+        <p class="github">
+            Le code source de ce service est consultable sur <a href="https://github.com/LAB-MI/deplacement-covid-19" class="github-link">Github</a>.
+        </p>
         <p class="label-mi">
             Ministère de l'Intérieur - DNUM - SDIT
         </p> 
@@ -263,9 +267,11 @@
         </div>
     </footer> 
 
-    <div class="alert  alert-danger  d-none" role="alert" id="alert-facebook">
-        ATTENTION !! Vous utilisez actuellement le navigateur Facebook, ce générateur ne fonctionne pas correctement au
-        sein de ce navigateur ! Merci d'ouvrir Chrome sur Android ou bien Safari sur iOS.
+    <div class="alert  alert-info  d-none" id="update-alert">
+        Une nouvelle version est disponible. Cliquer sur le bouton pour l'obtenir.
+        <p class="text-right">
+            <button id="reload-btn" class="btn  btn-info">Mettre à jour</button>
+        </p>
     </div>
 
     <script src="./certificate.js"></script>

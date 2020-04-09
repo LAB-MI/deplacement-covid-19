@@ -73,6 +73,6 @@
     "strategy": "default",
     "clearDist": false,
     "templatedURLs": {
-      "/": ["index.html"]
+      "./": ["index.html"]
   }  }
 }

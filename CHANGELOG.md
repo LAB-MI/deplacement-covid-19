@@ -25,3 +25,10 @@
 - :recycle: Cleanup directory structure
 - :heavy_plus_sign: Avoid using env specific syntax in npm scripts
 - changes PWA display
+## [1.1.1] - 2020-04-09
+### Fixed
+- :wrench: Fix parcel-plugin-sw-cache configuration
+### Added
+- :pencil: add CONTRIBUTORS
+### Changes
+- :pencil: change LICENCE ( #16 )

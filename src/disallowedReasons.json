@@ -1,0 +1,13 @@
+[
+  {
+    "_comment": "JSON file to give Disallow indications. We can indicate a ZipCode (57: Department, 57001: City, 75000: City for example)",
+    "zipcode": "57",
+    "reason": "sport",
+    "hours": {
+      "start": 660, 
+      "end": 1140,
+      "_comment": "660 means 11Am = 11h * 60m"
+    },
+    "message": "Interdiction du vendredi 10 au lundi 13 avril inclus des sorties pour activités sportives individuelles entre 11 h  et 19 h  sur l’ensemble du département de la Moselle"
+  }
+]

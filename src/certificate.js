@@ -10,6 +10,7 @@ import { faEye, faFilePdf } from '@fortawesome/free-solid-svg-icons'
 import './check-updates'
 import { $, $$ } from './dom-utils'
 import pdfBase from './certificate.pdf'
+import disallowedReasons from './disallowedReasons'
 
 library.add(faEye, faFilePdf)
 
@@ -204,6 +205,48 @@ function getAndSaveReasons () {
   return values
 }
 
+/**
+ * Function to check if the Hour is allowed
+ * @param date
+ * @param start
+ * @param end
+ * @returns {boolean|boolean}
+ */
+function inTime (date, start, end) {
+  var time = date.getHours() * 60 + date.getMinutes()
+  return time >= start && time < end
+}
+
+/**
+ * Function to verify if the Reason, ZipCode and Hour are allowed.
+ * @param profile
+ * @param reasons
+ * @returns {*}
+ */
+function checkReasons (profile, reasons) {
+  const { zipcode, heuresortie } = profile
+  let message = null
+  let newDate = null
+
+  // Get the disallowedReasons by the zipcode and reason
+  const disallowedFound = disallowedReasons.find((item) => zipcode !== '' && zipcode.startsWith(item.zipcode) && reasons.includes(item.reason))
+  message = disallowedFound.message
+
+  if (disallowedFound.hours) {
+    newDate = new Date('1970-01-01 ' + heuresortie)
+  }
+
+  if (disallowedFound.hours && newDate) {
+    const { start, end } = disallowedFound.hours
+
+    if (!inTime(newDate, start, end)) {
+      message = null
+    }
+  }
+
+  return message
+}
+
 // see: https://stackoverflow.com/a/32348687/1513045
 function isFacebookBrowser () {
   const ua = navigator.userAgent || navigator.vendor || window.opera
@@ -238,11 +281,14 @@ $('#generate-btn').addEventListener('click', async event => {
 
   saveProfile()
   const reasons = getAndSaveReasons()
+  // Check in the JSON file if the Reason, ZipCode and Hours are allowed.
+  const dissalowedMessage = checkReasons(getProfile(), reasons)
+  if (dissalowedMessage) return alert(dissalowedMessage)
   const pdfBlob = await generatePdf(getProfile(), reasons)
   localStorage.clear()
   const creationDate = new Date().toLocaleDateString('fr-CA')
   const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', '-')
-  downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`) 
+  downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`)
 
   snackbar.classList.remove('d-none')
   setTimeout(() => snackbar.classList.add('show'), 100)
@@ -275,7 +321,7 @@ const conditions = {
   },
   '#field-birthday': {
     condition: 'pattern',
-    pattern: /^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)/g
+    pattern: /^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)/g,
   },
   '#field-lieunaissance': {
     condition: 'length',
@@ -288,33 +334,33 @@ const conditions = {
   },
   '#field-zipcode': {
     condition: 'pattern',
-    pattern: /\d{5}/g
+    pattern: /\d{5}/g,
   },
   '#field-datesortie': {
     condition: 'pattern',
-    pattern: /\d{4}-\d{2}-\d{2}/g
+    pattern: /\d{4}-\d{2}-\d{2}/g,
   },
   '#field-heuresortie': {
     condition: 'pattern',
-    pattern: /\d{2}:\d{2}/g
-  }
+    pattern: /\d{2}:\d{2}/g,
+  },
 }
 
 Object.keys(conditions).forEach(field => {
   $(field).addEventListener('input', () => {
     if (conditions[field].condition == 'pattern') {
-      const pattern = conditions[field].pattern;
+      const pattern = conditions[field].pattern
       if ($(field).value.match(pattern)) {
-        $(field).setAttribute('aria-invalid', "false");
+        $(field).setAttribute('aria-invalid', 'false')
       } else {
-        $(field).setAttribute('aria-invalid', "true");
+        $(field).setAttribute('aria-invalid', 'true')
       }
     }
     if (conditions[field].condition == 'length') {
       if ($(field).value.length > 0) {
-        $(field).setAttribute('aria-invalid', "false");
+        $(field).setAttribute('aria-invalid', 'false')
       } else {
-        $(field).setAttribute('aria-invalid', "true");
+        $(field).setAttribute('aria-invalid', 'true')
       }
     }
   })

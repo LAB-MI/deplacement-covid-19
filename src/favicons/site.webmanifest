@@ -1,7 +1,7 @@
 {
     "name": "Générateur d'attestation de déplacement dérogatoire",
     "short_name": "Déplacement covid-19",
-    "desctiption": "L'application officielle du gouvernement pour la génération d'attestation de déplacement dérogatoire dématérialisée.",
+    "description": "L'application officielle du gouvernement pour la génération d'attestation de déplacement dérogatoire dématérialisée.",
     "categories": ["government", "health"],
     "lang": "fr-FR",
     "icons": [
@@ -13,6 +13,26 @@
         {
             "src": "android-chrome-512x512.png",
             "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "apple-touch-icon-precomposed.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "apple-touch-icon-120x120.png",
+            "sizes": "120x120",
+            "type": "image/png"
+        },
+        {
+            "src": "apple-touch-icon-120x120-precomposed.png",
+            "sizes": "120x120",
             "type": "image/png"
         }
     ],

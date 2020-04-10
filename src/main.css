@@ -214,6 +214,10 @@ input:valid+span:after {
   color: #000191;
 }
 
+.github-link:hover {
+    text-decoration: underline;
+}
+
 .label-mi {
   text-align: center;
   font-size: 1em;
@@ -234,7 +238,7 @@ input:valid+span:after {
   max-width: 500px;
 }
 
-.footer-link {
+.footer-line {
   display: block;
   margin: 0.75em;
   font-size: 0.9em;
@@ -242,7 +246,7 @@ input:valid+span:after {
 }
 
 .footer-link:hover {
-  text-decoration: none;
+  text-decoration: underline;
   color: #ffffff;
 }
 
@@ -253,6 +257,15 @@ input:valid+span:after {
 .num-08 {
   font-weight: bold;
   color: #00a94f;
+}
+
+.num-08:hover {
+    text-decoration: underline;
+    color: #0A81FF;
+}
+
+.stores-link:hover {
+    text-decoration: underline;
 }
 
 .confidentialite {

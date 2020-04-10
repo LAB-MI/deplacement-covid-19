@@ -88,13 +88,8 @@ function idealFontSize (font, text, maxWidth, minSize, defaultSize) {
 }
 
 async function generatePdf (profile, reasons) {
-  const generatedDate = new Date()
-  setDateNow(generatedDate)
-  const creationDate = `${day}/${month}/${year}`
-
-  const hour = pad(generatedDate.getHours())
-  const minute = pad(generatedDate.getMinutes())
-  const creationHour = `${hour}h${minute}`
+  const creationDate = new Date().toLocaleDateString('fr-FR')
+  const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', 'h')
 
   const { lastname, firstname, birthday, lieunaissance, address, zipcode, town, datesortie, heuresortie } = profile
   const releaseHours = String(heuresortie).substring(0, 2)
@@ -223,6 +218,7 @@ if (isFacebookBrowser()) {
 function addSlash () {
   $('#field-birthday').value = $('#field-birthday').value.replace(/^(\d{2})$/g, '$1/')
   $('#field-birthday').value = $('#field-birthday').value.replace(/^(\d{2})\/(\d{2})$/g, '$1/$2/')
+  $('#field-birthday').value = $('#field-birthday').value.replace(/\/\//g, '/')
 }
 
 $('#field-birthday').onkeyup = function () {
@@ -244,7 +240,9 @@ $('#generate-btn').addEventListener('click', async event => {
   const reasons = getAndSaveReasons()
   const pdfBlob = await generatePdf(getProfile(), reasons)
   localStorage.clear()
-  downloadBlob(pdfBlob, 'attestation.pdf')
+  const creationDate = new Date().toLocaleDateString('fr-CA')
+  const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', '-')
+  downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`) 
 
   snackbar.classList.remove('d-none')
   setTimeout(() => snackbar.classList.add('show'), 100)
@@ -266,6 +264,60 @@ $$('input').forEach(input => {
       }
     })
   }
+})
+
+const conditions = {
+  '#field-firstname': {
+    condition: 'length',
+  },
+  '#field-lastname': {
+    condition: 'length',
+  },
+  '#field-birthday': {
+    condition: 'pattern',
+    pattern: /^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)/g
+  },
+  '#field-lieunaissance': {
+    condition: 'length',
+  },
+  '#field-address': {
+    condition: 'length',
+  },
+  '#field-town': {
+    condition: 'length',
+  },
+  '#field-zipcode': {
+    condition: 'pattern',
+    pattern: /\d{5}/g
+  },
+  '#field-datesortie': {
+    condition: 'pattern',
+    pattern: /\d{4}-\d{2}-\d{2}/g
+  },
+  '#field-heuresortie': {
+    condition: 'pattern',
+    pattern: /\d{2}:\d{2}/g
+  }
+}
+
+Object.keys(conditions).forEach(field => {
+  $(field).addEventListener('input', () => {
+    if (conditions[field].condition == 'pattern') {
+      const pattern = conditions[field].pattern;
+      if ($(field).value.match(pattern)) {
+        $(field).setAttribute('aria-invalid', "false");
+      } else {
+        $(field).setAttribute('aria-invalid', "true");
+      }
+    }
+    if (conditions[field].condition == 'length') {
+      if ($(field).value.length > 0) {
+        $(field).setAttribute('aria-invalid', "false");
+      } else {
+        $(field).setAttribute('aria-invalid', "true");
+      }
+    }
+  })
 })
 
 function addVersion () {

@@ -29,7 +29,7 @@
     <title>COVID-19 – Générateur d'attestation de déplacement dérogatoire</title>
 </head>
 <body>
-    <header class="wrapper">
+    <header role="banner" class="wrapper">
         <img class="logo" src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité.">
         <div>
             <h1 class="flex flex-wrap">
@@ -47,7 +47,7 @@
             </p>
         </div>
     </header>
-
+    <main role="main">
     <p class="alert  alert-danger  d-none" role="alert" id="alert-facebook"></p>
 
     <div class="wrapper">
@@ -68,6 +68,7 @@
                         placeholder="Jean"
                         required
                         autofocus
+                        aria-invalid="true"
                     >
                     <span class="validity" aria-hidden="true"></span>
                 </div>
@@ -84,6 +85,7 @@
                         name="lastname"
                         autocomplete="family-name"
                         placeholder="Dupont"
+                        aria-invalid="true"
                         required
                         autofocus
                     >
@@ -97,11 +99,12 @@
                 <div class="input-group  align-items-center">
                     <input
                         type="text"
-                        pattern="^([0][1-9]|[1-2][0-9]|30|31)/([0][1-9]|10|11|12)/(19[0-9][0-9]|20[0-1][0-9]|2020)"
+                        pattern="^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)"
                         inputmode="numeric"
                         class="form-control"
                         id="field-birthday"
                         name="birthday"
+                        aria-invalid="true"
                         autocomplete="bday"
                         placeholder="01/01/1970"
                         maxlength="10"
@@ -120,6 +123,7 @@
                         class="form-control"
                         id="field-lieunaissance"
                         name="lieunaissance"
+                        aria-invalid="true"
                         placeholder="Lyon"
                         required
                     >
@@ -136,6 +140,7 @@
                         class="form-control"
                         id="field-address"
                         name="address"
+                        aria-invalid="true"
                         autocomplete="address-line1" 
                         placeholder="999 avenue de france"
                         required
@@ -154,6 +159,7 @@
                         id="field-town"
                         name="town"
                         autocomplete="address-level1"
+                        aria-invalid="true"
                         placeholder="Paris"
                         required
                     >
@@ -174,6 +180,7 @@
                         class="form-control"
                         id="field-zipcode"
                         name="zipcode"
+                        aria-invalid="true"
                         autocomplete="postal-code" 
                         minlength="4"
                         maxlength="5"
@@ -194,7 +201,7 @@
     
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-courses" value="courses">
-                    <label class="form-check-label" for="checkbox-courses">Déplacements pour effectuer des achats de fournitures nécessaires à l’activité professionnelle et des achats de première nécessité dans des établissements dont les activités demeurent autorisées <a href="https://www.service-public.fr/particuliers/actualites/A13921" target="_blank">(liste sur gouvernement.fr)</a>.</label>
+                    <label class="form-check-label" for="checkbox-courses">Déplacements pour effectuer des achats de fournitures nécessaires à l’activité professionnelle et des achats de première nécessité dans des établissements dont les activités demeurent autorisées (<a href="https://www.service-public.fr/particuliers/actualites/A13921" class="stores-link" title="Liste des commerces et établissements qui restent ouverts - nouvelle page" target="_blank">liste des commerces et établissements qui restent ouverts</a>).</label>
                 </div>
                 
                 <div class="form-check">
@@ -224,7 +231,7 @@
             <div class="form-group">
                 <label for="field-datesortie">Date de sortie</label>
                 <div class="input-group  align-items-center">
-                    <input type="date" class="form-control" id="field-datesortie" name="datesortie" placeholder="JJ/MM/YYYY" required>
+                    <input type="date" class="form-control" id="field-datesortie" name="datesortie" autocomplete="off" placeholder="JJ/MM/YYYY" aria-invalid="true" required>
                     <span class="validity" aria-hidden="true"></span>
                 </div>
             </div>
@@ -232,7 +239,7 @@
             <div class="form-group">
                 <label for="field-heuresortie">Heure de sortie</label>
                 <div class="input-group  align-items-center">
-                    <input type="time" class="form-control" id="field-heuresortie" name="heure" required>
+                    <input type="time" class="form-control" id="field-heuresortie" name="heure" autocomplete="off" aria-invalid="true" required>
                     <span class="validity" aria-hidden="true"></span>
                 </div>
             </div>
@@ -256,14 +263,14 @@
         </p> 
         <img class="center" src="/logo_dnum.svg" alt="logo dnum">
     </div>
-
-    <footer class="main-footer">
+    </main>
+    <footer role="contentinfo" class="main-footer">
         <div class="footer-links">
-            <a href="./confidentialite.html" title="Confidentialité - nouvelle page" target="_blank" class="footer-link">Confidentialité</a>
-            <a href="https://www.interieur.gouv.fr/Infos-du-site/Mentions-legales" title="Mentions légales - nouvelle page" target="_blank" class="footer-link">Mentions légales</a>
-            <a href="https://www.gouvernement.fr/info-coronavirus" title="Information du gouvernement sur le Covid-19 - nouvelle page" target="_blank" class="footer-link">Informations du gouvernement sur le Covid-19</a> 
-            <div class="footer-link" >Plus d’infos au<a class="num-08" href="tel:0800130000"> 0 800 130 000</a></div>
-            <p class="footer-link" id="version"></p>
+            <a href="./confidentialite.html" title="Confidentialité - nouvelle page" target="_blank" class="footer-line footer-link">Confidentialité</a>
+            <a href="https://www.interieur.gouv.fr/Infos-du-site/Mentions-legales" title="Mentions légales - nouvelle page" target="_blank" class="footer-line footer-link">Mentions légales</a>
+            <a href="https://www.gouvernement.fr/info-coronavirus" title="Information du gouvernement sur le Covid-19 - nouvelle page" target="_blank" class="footer-line footer-link">Informations du gouvernement sur le Covid-19</a> 
+            <div class="footer-line" >Plus d’infos au <a class="num-08" href="tel:0800130000">0 800 130 000</a></div>
+            <p class="footer-line" id="version"></p>
         </div>
     </footer> 
 

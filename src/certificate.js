@@ -15,11 +15,11 @@ library.add(faEye, faFilePdf)
 
 dom.watch()
 
-var year, month, day
+let year, month, day
 
 const generateQR = async text => {
   try {
-    var opts = {
+    const opts = {
       errorCorrectionLevel: 'M',
       type: 'image/png',
       quality: 0.92,
@@ -59,7 +59,7 @@ function setReleaseDateTime () {
 function saveProfile () {
   for (const field of $$('#form-profile input')) {
     if (field.id === 'field-datesortie') {
-      var dateSortie = field.value.split('-')
+      const dateSortie = field.value.split('-')
       localStorage.setItem(field.id.substring('field-'.length), `${dateSortie[2]}/${dateSortie[1]}/${dateSortie[0]}`)
     } else {
       localStorage.setItem(field.id.substring('field-'.length), field.value)
@@ -194,7 +194,7 @@ async function generatePdf (profile, reasons) {
 
 function downloadBlob (blob, fileName) {
   const link = document.createElement('a')
-  var url = URL.createObjectURL(blob)
+  const url = URL.createObjectURL(blob)
   link.href = url
   link.download = fileName
   document.body.appendChild(link)

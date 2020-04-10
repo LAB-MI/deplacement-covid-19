@@ -75,10 +75,10 @@ function getRequiredFields () {
   if (emptyRequiredFields) {
     const mappedFrenchFields = []
     for (const property in emptyRequiredFields) {
-      mappedFrenchFields.push(requiredFields[emptyRequiredFields[property]]);
+      mappedFrenchFields.push(requiredFields[emptyRequiredFields[property]])
     }
     if (mappedFrenchFields.length > 0) {
-      alert('Attention, les champs obligatoire suivant ne sont pas remplis : ' + mappedFrenchFields.join(' , '))
+      alert('Attention, les champs obligatoires suivants ne sont pas renseignés : ' + mappedFrenchFields.join(' , '))
       throw new Error()
     }
   }

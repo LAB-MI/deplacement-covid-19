@@ -1,7 +1,7 @@
 {
     "name": "Générateur d'attestation de déplacement dérogatoire",
     "short_name": "Déplacement covid-19",
-    "desctiption": "L'application officielle du gouvernement pour la génération d'attestation de déplacement dérogatoire dématérialisée.",
+    "description": "L'application officielle du gouvernement pour la génération d'attestation de déplacement dérogatoire dématérialisée.",
     "categories": ["government", "health"],
     "lang": "fr-FR",
     "icons": [

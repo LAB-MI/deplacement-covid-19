@@ -56,6 +56,34 @@ function setReleaseDateTime () {
   releaseTimeInput.value = `${hour}:${minute}`
 }
 
+function getRequiredFields () {
+  const requiredFields = {
+    firstname: 'Prénom',
+    lastname: 'Nom',
+    birthday: 'Date de naissance',
+    lieunaissance: 'Lieu de naissance',
+    address: 'Adresse',
+    town: 'Ville',
+    zipcode: 'Code postal',
+  }
+  const emptyRequiredFields = []
+  for (const profilValues of $$('[required]')) {
+    if (!profilValues.value) {
+      emptyRequiredFields.push(profilValues.name)
+    }
+  }
+  if (emptyRequiredFields) {
+    const mappedFrenchFields = []
+    for (const property in emptyRequiredFields) {
+      mappedFrenchFields.push(requiredFields[emptyRequiredFields[property]]);
+    }
+    if (mappedFrenchFields.length > 0) {
+      alert('Attention, les champs obligatoire suivant ne sont pas remplis : ' + mappedFrenchFields.join(' , '))
+      throw new Error()
+    }
+  }
+}
+
 function saveProfile () {
   for (const field of $$('#form-profile input')) {
     if (field.id === 'field-datesortie') {
@@ -240,6 +268,7 @@ const snackbar = $('#snackbar')
 $('#generate-btn').addEventListener('click', async event => {
   event.preventDefault()
 
+  getRequiredFields()
   saveProfile()
   const reasons = getAndSaveReasons()
   const pdfBlob = await generatePdf(getProfile(), reasons)

@@ -300,6 +300,30 @@ const conditions = {
   }
 }
 
+function formIsValid() {
+  return Object.keys(conditions).every(field => {
+    if (conditions[field].condition == 'pattern') {
+      return $(field).value.match(
+        conditions[field].pattern
+      );
+    }
+    else if (conditions[field].condition == 'length') {
+      return $(field).value.length > 0;
+    } else {
+      console.error(conditions[field].condition + "is an unknown conditition for field");
+      return true;
+    }
+  }) && getAndSaveReasons().length > 0;
+}
+
+function refreshEnableButton() {
+  if (formIsValid()) {
+    $("#generate-btn").removeAttribute("disabled");
+  } else {
+    $("#generate-btn").setAttribute("disabled", true);
+  }
+}
+
 Object.keys(conditions).forEach(field => {
   $(field).addEventListener('input', () => {
     if (conditions[field].condition == 'pattern') {
@@ -320,7 +344,10 @@ Object.keys(conditions).forEach(field => {
   })
 })
 
+$$("input").forEach(input => input.addEventListener('input', refreshEnableButton))
+
 function addVersion () {
   document.getElementById('version').innerHTML = `${new Date().getFullYear()} - ${process.env.VERSION}`
 }
-addVersion()
+addVersion();
+document.addEventListener('DOMContentLoaded', refreshEnableButton);

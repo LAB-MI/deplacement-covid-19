@@ -6,6 +6,7 @@ import { PDFDocument, StandardFonts } from 'pdf-lib'
 import QRCode from 'qrcode'
 import { library, dom } from '@fortawesome/fontawesome-svg-core'
 import { faEye, faFilePdf } from '@fortawesome/free-solid-svg-icons'
+import jsSHA from "jssha"
 
 import './check-updates'
 import { $, $$ } from './dom-utils'
@@ -95,11 +96,17 @@ async function generatePdf (profile, reasons) {
   const releaseHours = String(heuresortie).substring(0, 2)
   const releaseMinutes = String(heuresortie).substring(3, 5)
 
+  const shaObj = new jsSHA('SHA-256', 'TEXT', { encoding: 'UTF8' });
+  shaObj.update(lastname.toUpperCase())
+  shaObj.update(firstname.toUpperCase())
+  shaObj.update(birthday.toUpperCase())
+  shaObj.update(lieunaissance.toUpperCase())
+
+  const personalDataSign = shaObj.getHash('HEX')
+
   const data = [
     `Cree le: ${creationDate} a ${creationHour}`,
-    `Nom: ${lastname}`,
-    `Prenom: ${firstname}`,
-    `Naissance: ${birthday} a ${lieunaissance}`,
+    `Signature données personnelles: ${personalDataSign}`,
     `Adresse: ${address} ${zipcode} ${town}`,
     `Sortie: ${datesortie} a ${releaseHours}h${releaseMinutes}`,
     `Motifs: ${reasons}`,
@@ -115,9 +122,10 @@ async function generatePdf (profile, reasons) {
     page1.drawText(text, { x, y, size, font })
   }
 
-  drawText(`${firstname} ${lastname}`, 123, 686)
-  drawText(birthday, 123, 661)
-  drawText(lieunaissance, 92, 638)
+  drawText("Les données personnelles ne sont plus affichées", 123, 686)
+  // drawText(`${firstname} ${lastname}`, 123, 686)
+  // drawText(birthday, 123, 661)
+  // drawText(lieunaissance, 92, 638)
   drawText(`${address} ${zipcode} ${town}`, 134, 613)
 
   if (reasons.includes('travail')) {

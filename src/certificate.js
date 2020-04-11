@@ -88,8 +88,9 @@ function idealFontSize (font, text, maxWidth, minSize, defaultSize) {
 }
 
 async function generatePdf (profile, reasons) {
-  const creationDate = new Date().toLocaleDateString('fr-FR')
-  const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', 'h')
+  const creationInstant = new Date()
+  const creationDate = creationInstant.toLocaleDateString('fr-FR')
+  const creationHour = creationInstant.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', 'h')
 
   const { lastname, firstname, birthday, lieunaissance, address, zipcode, town, datesortie, heuresortie } = profile
   const releaseHours = String(heuresortie).substring(0, 2)
@@ -240,8 +241,9 @@ $('#generate-btn').addEventListener('click', async event => {
   const reasons = getAndSaveReasons()
   const pdfBlob = await generatePdf(getProfile(), reasons)
   localStorage.clear()
-  const creationDate = new Date().toLocaleDateString('fr-CA')
-  const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', '-')
+  const creationInstant = new Date()
+  const creationDate = creationInstant.toLocaleDateString('fr-CA')
+  const creationHour = creatoonInstant.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', '-')
   downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`) 
 
   snackbar.classList.remove('d-none')

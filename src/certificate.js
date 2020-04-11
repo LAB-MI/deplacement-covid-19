@@ -5,13 +5,13 @@ import './main.css'
 import { PDFDocument, StandardFonts } from 'pdf-lib'
 import QRCode from 'qrcode'
 import { library, dom } from '@fortawesome/fontawesome-svg-core'
-import { faEye, faFilePdf } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faFilePdf, faAddressBook } from '@fortawesome/free-solid-svg-icons'
 
 import './check-updates'
 import { $, $$ } from './dom-utils'
 import pdfBase from './certificate.pdf'
 
-library.add(faEye, faFilePdf)
+library.add(faEye, faFilePdf, faAddressBook)
 
 dom.watch()
 
@@ -233,13 +233,16 @@ $('#field-birthday').onkeyup = function () {
 
 const snackbar = $('#snackbar')
 
+$('#prefill-btn').addEventListener('click', () => {
+  prefill()
+})
+
 $('#generate-btn').addEventListener('click', async event => {
   event.preventDefault()
 
   saveProfile()
   const reasons = getAndSaveReasons()
   const pdfBlob = await generatePdf(getProfile(), reasons)
-  localStorage.clear()
   const creationDate = new Date().toLocaleDateString('fr-CA')
   const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', '-')
   downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`) 
@@ -319,6 +322,27 @@ Object.keys(conditions).forEach(field => {
     }
   })
 })
+
+const SAVED_FIELDS = [
+  'firstname',
+  'lastname',
+  'address',
+  'town',
+  'zipcode',
+  'lieunaissance',
+  'birthday',
+]
+
+function prefill () {
+  const profile = getProfile()
+
+  SAVED_FIELDS.forEach((field) => {
+    const value = profile[field]
+    if (value) {
+      $(`#field-${field}`).value = value
+    }
+  })
+}
 
 function addVersion () {
   document.getElementById('version').innerHTML = `${new Date().getFullYear()} - ${process.env.VERSION}`

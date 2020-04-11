@@ -233,16 +233,13 @@ $('#field-birthday').onkeyup = function () {
 
 const snackbar = $('#snackbar')
 
-$('#prefill-btn').addEventListener('click', () => {
-  prefill()
-})
-
 $('#generate-btn').addEventListener('click', async event => {
   event.preventDefault()
 
   saveProfile()
   const reasons = getAndSaveReasons()
   const pdfBlob = await generatePdf(getProfile(), reasons)
+  checkPrefill()
   const creationDate = new Date().toLocaleDateString('fr-CA')
   const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', '-')
   downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`) 
@@ -343,6 +340,25 @@ function prefill () {
     }
   })
 }
+
+function checkPrefill () {
+  const profile = getProfile()
+  const canPrefill = !!profile.firstname
+
+  if (!canPrefill) {
+    $('#prefill-alert').classList.remove('d-none')
+    $('#prefill-btn').disabled = true
+  } else {
+    $('#prefill-alert').classList.add('d-none')
+    $('#prefill-btn').disabled = false
+  }
+}
+
+$('#prefill-btn').addEventListener('click', () => {
+  prefill()
+})
+
+checkPrefill()
 
 function addVersion () {
   document.getElementById('version').innerHTML = `${new Date().getFullYear()} - ${process.env.VERSION}`

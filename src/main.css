@@ -118,6 +118,16 @@ a {
   }
 }
 
+p {
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  p {
+    color: white;
+  }
+}
+
 .wrapper {
   max-width: 800px;
   margin-left: auto;
@@ -392,6 +402,13 @@ picture {
     th {
       border: 1px solid #000191;
       padding: 8px;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      td, th {
+        border-color: #A3A3FF;
+        color: white;
+      }
     }
 
     .header-row {

@@ -14,8 +14,25 @@
   font-style: normal;
 }
 
+html {
+  background: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background: #222;
+  }
+}
+
 body {
   margin: 20px;
+  background: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #222;
+  }
 }
 
 form, #alert-print {
@@ -25,7 +42,14 @@ form, #alert-print {
 
 h1 {
 	font-size: 2em;
+  color: black;
+}
 
+@media (prefers-color-scheme: dark) {
+  h1 {
+    color: white;
+    background-color: white;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -51,12 +75,32 @@ h1.flex.flex-wrap {
   flex-wrap: wrap;
 }
 
+@media (prefers-color-scheme: dark) {
+  h1.flex.flex-wrap {
+    border: 1px solid white;
+  }
+}
+
 h2 {
   font-size: large;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  h2 {
+    color: white;
+  }
 }
 
 footer {
   margin-top: 40px;
+  background: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  footer {
+    background: #222;
+  }
 }
 
 canvas {
@@ -66,6 +110,12 @@ canvas {
 
 a {
   color: #000191;
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    color: #A3A3FF;
+  }
 }
 
 .wrapper {
@@ -81,6 +131,19 @@ a {
 #form-profile .form-check-label {
   font-weight: 400;
   transform: translateY(-2px);
+  
+}
+
+@media (prefers-color-scheme: dark) {
+  #form-profile .form-check-label {
+    color: #ddd;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  label {
+    color: white;
+  }
 }
 
 #form-generate .form-check {
@@ -151,10 +214,13 @@ input:valid+span:after {
   height: 1em;
 }
 
+picture {
+  display: inline-block;
+}
+
 .logo {
   width: 50%;
 }
-
 
 .covid-title {
   display: flex;
@@ -163,7 +229,13 @@ input:valid+span:after {
   font-family: 'marianne-regular', Arial, Helvetica, sans-serif;
   font-size: 0.50em;
   color: #ffffff;
-  background-color: #000191;
+  background: #000191;
+}
+
+@media (prefers-color-scheme: dark) {<
+  .covid-title {
+    background: #2929ff;
+  }
 }
 
 @media (min-width: 992px) {
@@ -177,24 +249,34 @@ input:valid+span:after {
   align-items: center;
   font-size: 0.40em;
   padding: 0.3em;
-  background-color: #e1000f;
-  text-transform:uppercase ;
+  background: #e1000f;
+  text-transform: uppercase;
   color: #ffffff;
   flex-grow: 1;
 }
 
-.text-alert{
-  text-align: left;
-  color: #000000;
+@media (prefers-color-scheme: dark) {
+  .covid-subtitle {
+    background: #ad000c;
+  }
 }
 
+.text-alert {
+  text-align: left;
+  color: black;
+}
 
+@media (prefers-color-scheme: dark) {
+  .text-alert {
+    color: white;
+  }
+}
 
 .btn-attestation {
   padding: 0.9em;
   font-size: 1.2em;
   font-weight: bold;
-  color: #ffffff;
+  color: white;
   background-color: #000191;
   border-radius: 0.5em;
 }
@@ -206,12 +288,23 @@ input:valid+span:after {
 .github {
   font-size: 0.7em;
   text-align: center;
-  color: #000000;
+  color: black;
+}
 
+@media (prefers-color-scheme: dark) {
+  .github {
+    color: white
+  }
 }
 
 .github-link {
   color: #000191;
+}
+
+@media (prefers-color-scheme: dark) {
+  .github-link {
+    color: #A3A3FF;
+  }
 }
 
 .github-link:hover {
@@ -221,7 +314,19 @@ input:valid+span:after {
 .label-mi {
   text-align: center;
   font-size: 1em;
-  color: #000000
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  .label-mi {
+    color: white;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .validity {
+    color: #DDD;
+  }
 }
 
 .main-footer {
@@ -229,13 +334,24 @@ input:valid+span:after {
   justify-content: center;
   padding-top: 3em;
   padding-bottom: 3em;
-  background-color:#000000;
+  background: #222;
   color: white;
 }
 
 .footer-links {
   margin: 0 auto;
   max-width: 500px;
+  background: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  .main-footer {
+    background: #444;
+  }
+  
+  .footer-links {
+    background: #444;
+  }
 }
 
 .footer-line {
@@ -291,6 +407,12 @@ input:valid+span:after {
       padding: 8px 16px;
       color: #000191;
     }
+    
+    @media (prefers-color-scheme: dark) {
+      .name-col {
+        color: #A3A3FF;
+      }
+    }
   }
 
 
@@ -321,17 +443,35 @@ input:valid+span:after {
   font-weight: bold;
   color: #000191;
 }
+
+@media (prefers-color-scheme: dark) {
+  .titre-2 {
+    color: #A3A3FF;
+  }
+}
+
 .titre-3 {
   text-align: left;
   font-size: 1.25rem;
   font-weight: bold;
-  color: #000000;
+  color: black;
 }
+
 .titre-4 {
   text-align: left;
   font-size: 1rem;
   font-weight: bold;
-  color: #000000;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  .titre-3 {
+    color: white;
+  }
+  
+  .titre-4 {
+    color: white;
+  }
 }
 
 @media (max-width: 800px){
@@ -357,6 +497,12 @@ input:valid+span:after {
     width: 100px;
     margin-right: 8px;
     flex-shrink: 0;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    table td:before {
+      color: #A3A3FF;
+    }
   }
 }
 

@@ -30,7 +30,10 @@
 </head>
 <body>
     <header role="banner" class="wrapper">
-        <img class="logo" src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité.">
+        <picture>
+            <source srcset="/MIN_Interieur_RVB_dark.svg" media="(prefers-color-scheme: dark)">
+            <img src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité." class="logo">
+        </picture>
         <div>
             <h1 class="flex flex-wrap">
                 <span class="covid-title">
@@ -261,7 +264,10 @@
         <p class="label-mi">
             Ministère de l'Intérieur - DNUM - SDIT
         </p> 
-        <img class="center" src="/logo_dnum.svg" alt="logo dnum">
+        <picture class="center">
+          <source srcset="/logo_dnum_dark.svg" media="(prefers-color-scheme: dark)" class="center">
+          <img src="/logo_dnum.svg" alt="logo dnum" class="center">
+        </picture>
     </div>
     </main>
     <footer role="contentinfo" class="main-footer">

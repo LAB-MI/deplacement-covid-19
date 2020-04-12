@@ -154,6 +154,20 @@ p {
   label {
     color: white;
   }
+  
+  .form-control::placeholder {
+    color: #aaa;
+  }
+  
+  input, select, textarea, .form-control, .form-control:focus {
+    background: #333;
+    color: white;
+    border: 1px solid white;
+  }
+  
+  .form-control:focus {
+    background: #555;
+  }
 }
 
 #form-generate .form-check {

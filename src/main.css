@@ -18,6 +18,12 @@ html {
   background: white;
 }
 
+@supports (font: -apple-system-body) {
+  html {
+    font: -apple-system-body !important;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     background: #222;
@@ -64,6 +70,12 @@ h1 {
 @media (min-width: 768px) { 
   h1 {
     font-size: 3em;
+  }
+}
+
+@supports (font: -apple-system-headline) {
+  h1 {
+    font: -apple-system-headline !important;
   }
 }
 

@@ -73,12 +73,6 @@ h1 {
   }
 }
 
-@supports (font: -apple-system-headline) {
-  h1 {
-    font: -apple-system-headline !important;
-  }
-}
-
 svg {
   height: 1em;
 }

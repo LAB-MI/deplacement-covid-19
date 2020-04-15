@@ -62,7 +62,11 @@ function saveProfile () {
       var dateSortie = field.value.split('-')
       localStorage.setItem(field.id.substring('field-'.length), `${dateSortie[2]}/${dateSortie[1]}/${dateSortie[0]}`)
     } else {
-      localStorage.setItem(field.id.substring('field-'.length), field.value)
+      if (field.id === "checkbox-qr") {
+        localStorage.setItem("generateQR", field.checked)
+      } else {
+        localStorage.setItem(field.id.substring('field-'.length), field.value)
+      }
     }
   }
 }
@@ -158,29 +162,32 @@ async function generatePdf (profile, reasons) {
     drawText(releaseMinutes, 220, 201)
   }
 
-  // Date création
-  drawText('Date de création:', 464, 150, 7)
-  drawText(`${creationDate} à ${creationHour}`, 455, 144, 7)
+  // Générer un QR code si la case est cochée
+  if (profile.generateQR == "true") {  // localStorage don't store boolean but string
+    // Date création
+    drawText('Date de création:', 464, 150, 7)
+    drawText(`${creationDate} à ${creationHour}`, 455, 144, 7)
 
-  const generatedQR = await generateQR(data)
+    const generatedQR = await generateQR(data)
 
-  const qrImage = await pdfDoc.embedPng(generatedQR)
+    const qrImage = await pdfDoc.embedPng(generatedQR)
 
-  page1.drawImage(qrImage, {
-    x: page1.getWidth() - 170,
-    y: 155,
-    width: 100,
-    height: 100,
-  })
+    page1.drawImage(qrImage, {
+      x: page1.getWidth() - 170,
+      y: 155,
+      width: 100,
+      height: 100,
+    })
 
-  pdfDoc.addPage()
-  const page2 = pdfDoc.getPages()[1]
-  page2.drawImage(qrImage, {
-    x: 50,
-    y: page2.getHeight() - 350,
-    width: 300,
-    height: 300,
-  })
+    pdfDoc.addPage()
+    const page2 = pdfDoc.getPages()[1]
+    page2.drawImage(qrImage, {
+      x: 50,
+      y: page2.getHeight() - 350,
+      width: 300,
+      height: 300,
+    })
+  }
 
   const pdfBytes = await pdfDoc.save()
 

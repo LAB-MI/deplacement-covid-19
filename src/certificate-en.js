@@ -9,14 +9,14 @@ import { faEye, faFilePdf } from '@fortawesome/free-solid-svg-icons'
 
 import './check-updates'
 import { $, $$ } from './dom-utils'
-import pdfBase from './07-04-20-Attestation-etranger-metropole-FR.pdf'
+import pdfBase from './Attestation_deplacement_International_EN-1.pdf'
 
 library.add(faEye, faFilePdf)
 
 dom.watch()
 
-$('#radio-language-en').addEventListener('click', async event => {
-  window.location.href = '/index-en'
+$('#radio-language-fr').addEventListener('click', async event => {
+  window.location.href = '/index'
 })
 
 const generateQR = async text => {
@@ -108,38 +108,38 @@ async function generatePdf (profile, typeNationality, reasons) {
       drawText('x', 49, 354, 19)
     }
     if (reasons.includes('diplomatique')) {
-      drawText('x', 49, 328, 19)
+      drawText('x', 49, 339, 19)
     }
     if (reasons.includes('frontalier')) {
-      drawText('x', 49, 302, 19)
+      drawText('x', 49, 313, 19)
     }
   }
 
   if (typeNationality === 'eu') {
     if (reasons.includes('resident')) {
-      drawText('x', 49, 265, 19)
+      drawText('x', 49, 276, 19)
     }
     if (reasons.includes('transit')) {
-      drawText('x', 49, 249, 19)
+      drawText('x', 49, 263, 19)
     }
     if (reasons.includes('prof._sante')) {
-      drawText('x', 49, 234, 19)
+      drawText('x', 49, 250, 19)
     }
     if (reasons.includes('marchandises')) {
-      drawText('x', 49, 218, 19)
+      drawText('x', 49, 238, 19)
     }
     if (reasons.includes('equipage')) {
-      drawText('x', 49, 202, 19)
+      drawText('x', 49, 225, 19)
     }
     if (reasons.includes('diplomatique')) {
-      drawText('x', 49, 177, 19)
+      drawText('x', 49, 212, 19)
     }
     if (reasons.includes('frontalier')) {
-      drawText('x', 49, 150, 19)
+      drawText('x', 49, 189, 19)
     }
   }
   if (typeNationality === 'fr') {
-    drawText('x', 49, 127, 19)
+    drawText('x', 49, 162, 19)
   }
   let locationSize = idealFontSize(font, profile.town, 83, 7, 11)
 
@@ -150,9 +150,9 @@ async function generatePdf (profile, typeNationality, reasons) {
   }
 
   // Fait à :
-  drawText(profile.town, 388, 107, locationSize)
+  drawText(profile.town, 395, 142, locationSize)
   // Le
-  drawText(`${new Date().toLocaleDateString('fr-FR', { month: 'numeric', day: 'numeric' })}`, 488, 107)
+  drawText(`${new Date().toLocaleDateString('fr-FR', { month: 'numeric', day: 'numeric' })}`, 488, 142)
 
   const generatedQR = await generateQR(data)
 

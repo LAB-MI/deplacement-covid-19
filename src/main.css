@@ -29,14 +29,14 @@ h1 {
 }
 
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
+@media (min-width: 576px) {
   h1 {
     font-size: 2.5em;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
   h1 {
     font-size: 3em;
   }
@@ -45,6 +45,13 @@ h1 {
 svg {
   height: 1em;
 }
+
+ul.flex-justify {
+   display: flex;
+   justify-content:space-between;
+   padding: 0;
+   margin: 0;
+ }
 
 h1.flex.flex-wrap {
   display: flex;
@@ -80,6 +87,11 @@ a {
 
 #form-profile .form-check-label {
   font-weight: 400;
+  transform: translateY(-2px);
+}
+
+#form-profile .form-nationality-label {
+  font-weight: 800;
   transform: translateY(-2px);
 }
 
@@ -155,6 +167,27 @@ input:valid+span:after {
   width: 50%;
 }
 
+fieldset .form-language {
+  display: flex;
+  align-items: right;
+}
+
+.legend-language {
+  text-align: left;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.form-language .form-check-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+.flags {
+  width: 20px;
+  height: 15px;
+}
 
 .covid-title {
   display: flex;
@@ -185,10 +218,9 @@ input:valid+span:after {
 
 .text-alert{
   text-align: left;
+  font-style: italic;
   color: #000000;
 }
-
-
 
 .btn-attestation {
   padding: 0.9em;
@@ -308,13 +340,13 @@ input:valid+span:after {
       text-decoration: none;
       color: #ffffff;
     }
-  
+
   }
   em {
     font-size: .8rem;
   }
 }
-  
+
 .titre-2 {
   text-align: left;
   font-size: 1.5rem;
@@ -400,4 +432,23 @@ input:valid+span:after {
   bottom: 1em;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.control:not(:checked) ~ .conditional,
+#radio-fr:not(:checked) ~ .conditional,
+#radio-eu:not(:checked) ~ .conditional,
+#radio-tiers:not(:checked) ~ .conditional  {
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+[id^="footnote"] {
+  margin: 30px auto;
+  max-width: 400px;
+  font-size: 0.8em;
+  color: #000000;
+
 }

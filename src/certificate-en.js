@@ -16,7 +16,7 @@ library.add(faEye, faFilePdf)
 dom.watch()
 
 $('#radio-language-fr').addEventListener('click', async event => {
-  window.location.href = '/index'
+  window.location.href = `${process.env.PUBLIC_URL === '/' ? '' : process.env.PUBLIC_URL}/index.html`
 })
 
 const generateQR = async text => {

@@ -47,11 +47,12 @@ svg {
 }
 
 ul.flex-justify {
-   display: flex;
+  display: -webkit-flex; /* Safari */
+  -webkit-align-items: center; /* Safari 7.0+ */
    justify-content:space-between;
    padding: 0;
    margin: 0;
- }
+}
 
 h1.flex.flex-wrap {
   display: flex;

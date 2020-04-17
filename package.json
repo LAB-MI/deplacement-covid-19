@@ -4,7 +4,7 @@
   "description": "Générateur d'attestation de déplacement dérogatoire'",
   "main": "certificate.js",
   "scripts": {
-    "lint": "eslint ./*.js",
+    "lint": "eslint ./**/*.js",
     "start": "cross-env VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html",
     "clean:dist": "rimraf dist",
     "prebuild": "run-s lint clean:dist",

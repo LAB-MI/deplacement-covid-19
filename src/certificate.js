@@ -242,7 +242,7 @@ $('#generate-btn').addEventListener('click', async event => {
   localStorage.clear()
   const creationDate = new Date().toLocaleDateString('fr-CA')
   const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', '-')
-  downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`) 
+  downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`)
 
   snackbar.classList.remove('d-none')
   setTimeout(() => snackbar.classList.add('show'), 100)
@@ -275,7 +275,7 @@ const conditions = {
   },
   '#field-birthday': {
     condition: 'pattern',
-    pattern: /^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)/g
+    pattern: /^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)/g,
   },
   '#field-lieunaissance': {
     condition: 'length',
@@ -288,33 +288,33 @@ const conditions = {
   },
   '#field-zipcode': {
     condition: 'pattern',
-    pattern: /\d{5}/g
+    pattern: /\d{5}/g,
   },
   '#field-datesortie': {
     condition: 'pattern',
-    pattern: /\d{4}-\d{2}-\d{2}/g
+    pattern: /\d{4}-\d{2}-\d{2}/g,
   },
   '#field-heuresortie': {
     condition: 'pattern',
-    pattern: /\d{2}:\d{2}/g
-  }
+    pattern: /\d{2}:\d{2}/g,
+  },
 }
 
 Object.keys(conditions).forEach(field => {
   $(field).addEventListener('input', () => {
-    if (conditions[field].condition == 'pattern') {
-      const pattern = conditions[field].pattern;
+    if (conditions[field].condition === 'pattern') {
+      const pattern = conditions[field].pattern
       if ($(field).value.match(pattern)) {
-        $(field).setAttribute('aria-invalid', "false");
+        $(field).setAttribute('aria-invalid', 'false')
       } else {
-        $(field).setAttribute('aria-invalid', "true");
+        $(field).setAttribute('aria-invalid', 'true')
       }
     }
-    if (conditions[field].condition == 'length') {
+    if (conditions[field].condition === 'length') {
       if ($(field).value.length > 0) {
-        $(field).setAttribute('aria-invalid', "false");
+        $(field).setAttribute('aria-invalid', 'false')
       } else {
-        $(field).setAttribute('aria-invalid', "true");
+        $(field).setAttribute('aria-invalid', 'true')
       }
     }
   })

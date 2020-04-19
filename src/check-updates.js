@@ -2,7 +2,7 @@ import { $ } from './dom-utils'
 
 // Ce fichier est généré au build par le plugin parcel-plugin-sw-cache
 const swName = './sw.js'
-window.isUpdateAvailable = new Promise(function (resolve, reject) {
+window.isUpdateAvailable = new Promise((resolve, reject) => {
   // lazy way of disabling service workers while developing
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register(swName)

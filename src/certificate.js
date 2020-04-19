@@ -31,11 +31,11 @@ const generateQR = async text => {
   }
 }
 
-function pad (str) {
+const pad = str => {
   return String(str).padStart(2, '0')
 }
 
-function setDateNow (date) {
+const setDateNow = date => {
   year = date.getFullYear()
   month = pad(date.getMonth() + 1) // Les mois commencent à 0
   day = pad(date.getDate())
@@ -43,7 +43,7 @@ function setDateNow (date) {
 
 document.addEventListener('DOMContentLoaded', setReleaseDateTime)
 
-function setReleaseDateTime () {
+const setReleaseDateTime = () => {
   const loadedDate = new Date()
   setDateNow(loadedDate)
   const releaseDateInput = document.querySelector('#field-datesortie')
@@ -56,7 +56,7 @@ function setReleaseDateTime () {
   releaseTimeInput.value = `${hour}:${minute}`
 }
 
-function saveProfile () {
+const saveProfile = () => {
   for (const field of $$('#form-profile input')) {
     if (field.id === 'field-datesortie') {
       var dateSortie = field.value.split('-')
@@ -67,7 +67,7 @@ function saveProfile () {
   }
 }
 
-function getProfile () {
+const getProfile = () => {
   const fields = {}
   for (let i = 0; i < localStorage.length; i++) {
     const name = localStorage.key(i)
@@ -76,7 +76,7 @@ function getProfile () {
   return fields
 }
 
-function idealFontSize (font, text, maxWidth, minSize, defaultSize) {
+const idealFontSize = (font, text, maxWidth, minSize, defaultSize) => {
   let currentSize = defaultSize
   let textWidth = font.widthOfTextAtSize(text, defaultSize)
 
@@ -87,7 +87,7 @@ function idealFontSize (font, text, maxWidth, minSize, defaultSize) {
   return (textWidth > maxWidth) ? null : currentSize
 }
 
-async function generatePdf (profile, reasons) {
+const generatePdf = async (profile, reasons) => {
   const creationDate = new Date().toLocaleDateString('fr-FR')
   const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', 'h')
 
@@ -187,7 +187,7 @@ async function generatePdf (profile, reasons) {
   return new Blob([pdfBytes], { type: 'application/pdf' })
 }
 
-function downloadBlob (blob, fileName) {
+const downloadBlob = (blob, fileName) => {
   const link = document.createElement('a')
   var url = URL.createObjectURL(blob)
   link.href = url
@@ -196,7 +196,7 @@ function downloadBlob (blob, fileName) {
   link.click()
 }
 
-function getAndSaveReasons () {
+const getAndSaveReasons = () => {
   const values = $$('input[name="field-reason"]:checked')
     .map(x => x.value)
     .join('-')
@@ -205,7 +205,7 @@ function getAndSaveReasons () {
 }
 
 // see: https://stackoverflow.com/a/32348687/1513045
-function isFacebookBrowser () {
+const isFacebookBrowser = () => {
   const ua = navigator.userAgent || navigator.vendor || window.opera
   return ua.includes('FBAN') || ua.includes('FBAV')
 }
@@ -215,13 +215,13 @@ if (isFacebookBrowser()) {
   $('#alert-facebook').classList.remove('d-none')
 }
 
-function addSlash () {
+const addSlash = () => {
   $('#field-birthday').value = $('#field-birthday').value.replace(/^(\d{2})$/g, '$1/')
   $('#field-birthday').value = $('#field-birthday').value.replace(/^(\d{2})\/(\d{2})$/g, '$1/$2/')
   $('#field-birthday').value = $('#field-birthday').value.replace(/\/\//g, '/')
 }
 
-$('#field-birthday').onkeyup = function () {
+$('#field-birthday').onkeyup = () => {
   const key = event.keyCode || event.charCode
   if (key === 8 || key === 46) {
     return false
@@ -242,12 +242,12 @@ $('#generate-btn').addEventListener('click', async event => {
   localStorage.clear()
   const creationDate = new Date().toLocaleDateString('fr-CA')
   const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', '-')
-  downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`) 
+  downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`)
 
   snackbar.classList.remove('d-none')
   setTimeout(() => snackbar.classList.add('show'), 100)
 
-  setTimeout(function () {
+  setTimeout(() => {
     snackbar.classList.remove('show')
     setTimeout(() => snackbar.classList.add('d-none'), 500)
   }, 6000)
@@ -320,7 +320,7 @@ Object.keys(conditions).forEach(field => {
   })
 })
 
-function addVersion () {
+const addVersion => () => {
   document.getElementById('version').innerHTML = `${new Date().getFullYear()} - ${process.env.VERSION}`
 }
 addVersion()

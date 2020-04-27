@@ -30,7 +30,11 @@
 </head>
 <body>
     <header role="banner" class="wrapper">
-        <img class="logo" src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité.">
+        <picture>
+            <source srcset="/MIN_Interieur_RVB_dark.svg" media="(prefers-color-scheme: dark)">
+            <img src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité." class="logo" role="presentation" aria-hidden="true">
+        </picture>
+
         <div>
             <h1 class="flex flex-wrap">
                 <span class="covid-title">
@@ -68,9 +72,9 @@
                         placeholder="Jean"
                         required
                         autofocus
-                        aria-invalid="true"
+                        aria-invalid="false"
                     >
-                    <span class="validity" aria-hidden="true"></span>
+                    <span class="validity" aria-hidden="true" hidden=""></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -85,11 +89,11 @@
                         name="lastname"
                         autocomplete="family-name"
                         placeholder="Dupont"
-                        aria-invalid="true"
+                        aria-invalid="false"
                         required
                         autofocus
                     >
-                    <span class="validity" aria-hidden="true"></span>
+                    <span class="validity" aria-hidden="true" hidden=""></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -104,13 +108,13 @@
                         class="form-control"
                         id="field-birthday"
                         name="birthday"
-                        aria-invalid="true"
+                        aria-invalid="false"
                         autocomplete="bday"
                         placeholder="01/01/1970"
                         maxlength="10"
                         required
                     >
-                    <span class="validity" aria-hidden="true"></span>
+                    <span class="validity" aria-hidden="true" hidden=""></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -123,11 +127,12 @@
                         class="form-control"
                         id="field-lieunaissance"
                         name="lieunaissance"
-                        aria-invalid="true"
+                        aria-invalid="false"
+                        autocomplete="off"
                         placeholder="Lyon"
                         required
                     >
-                    <span class="validity" aria-hidden="true"></span>
+                    <span class="validity" aria-hidden="true" hidden=""></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -140,12 +145,12 @@
                         class="form-control"
                         id="field-address"
                         name="address"
-                        aria-invalid="true"
+                        aria-invalid="false"
                         autocomplete="address-line1" 
                         placeholder="999 avenue de france"
                         required
                     >
-                    <span class="validity" aria-hidden="true"></span>
+                    <span class="validity" aria-hidden="true" hidden=""></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -158,12 +163,12 @@
                         class="form-control"
                         id="field-town"
                         name="town"
-                        autocomplete="address-level1"
-                        aria-invalid="true"
+                        autocomplete="address-level2"
+                        aria-invalid="false"
                         placeholder="Paris"
                         required
                     >
-                    <span class="validity" aria-hidden="true"></span>
+                    <span class="validity" aria-hidden="true" hidden=""></span>
                 </div>
                 <p class="exemple"></p>
             </div>
@@ -180,20 +185,20 @@
                         class="form-control"
                         id="field-zipcode"
                         name="zipcode"
-                        aria-invalid="true"
+                        aria-invalid="false"
                         autocomplete="postal-code" 
                         minlength="4"
                         maxlength="5"
                         placeholder="75001"
                         required
                     >
-                    <span class="validity" aria-hidden="true"></span>
+                    <span class="validity" aria-hidden="true" hidden=""></span>
                 </div>
                 <p class="exemple"></p>
             </div>
             
             <fieldset>
-                <legend class="title-3">Choisissez le ou les motif(s) de sortie</legend>
+                <legend class="titre-3">Choisissez le ou les motif(s) de sortie</legend>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-travail" value="travail">
                     <label class="form-check-label" for="checkbox-travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu'ils sont indispensables à l'exercice d’activités ne pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant être différés.</label>
@@ -231,7 +236,7 @@
             <div class="form-group">
                 <label for="field-datesortie">Date de sortie</label>
                 <div class="input-group  align-items-center">
-                    <input type="date" class="form-control" id="field-datesortie" name="datesortie" autocomplete="off" placeholder="JJ/MM/YYYY" aria-invalid="true" required>
+                    <input type="date" class="form-control" id="field-datesortie" name="datesortie" autocomplete="off" placeholder="JJ/MM/YYYY" aria-invalid="false" required>
                     <span class="validity" aria-hidden="true"></span>
                 </div>
             </div>
@@ -239,7 +244,7 @@
             <div class="form-group">
                 <label for="field-heuresortie">Heure de sortie</label>
                 <div class="input-group  align-items-center">
-                    <input type="time" class="form-control" id="field-heuresortie" name="heure" autocomplete="off" aria-invalid="true" required>
+                    <input type="time" class="form-control" id="field-heuresortie" name="heure" autocomplete="off" aria-invalid="false" required>
                     <span class="validity" aria-hidden="true"></span>
                 </div>
             </div>
@@ -256,12 +261,15 @@
     </div>
     <div class="">
         <p class="github">
-            Le code source de ce service est consultable sur <a href="https://github.com/LAB-MI/deplacement-covid-19" class="github-link">Github</a>.
+            Le code source de ce service est consultable sur <a href="https://github.com/LAB-MI/deplacement-covid-19" class="github-link">GitHub</a>.
         </p>
         <p class="label-mi">
             Ministère de l'Intérieur - DNUM - SDIT
         </p> 
-        <img class="center" src="/logo_dnum.svg" alt="logo dnum">
+        <picture class="center">
+          <source srcset="/logo_dnum_dark.svg" media="(prefers-color-scheme: dark)">
+            <img class="center" src="/logo_dnum.svg" alt="logo dnum">
+        </picture>
     </div>
     </main>
     <footer role="contentinfo" class="main-footer">
@@ -269,7 +277,7 @@
             <a href="./confidentialite.html" title="Confidentialité - nouvelle page" target="_blank" class="footer-line footer-link">Confidentialité</a>
             <a href="https://www.interieur.gouv.fr/Infos-du-site/Mentions-legales" title="Mentions légales - nouvelle page" target="_blank" class="footer-line footer-link">Mentions légales</a>
             <a href="https://www.gouvernement.fr/info-coronavirus" title="Information du gouvernement sur le Covid-19 - nouvelle page" target="_blank" class="footer-line footer-link">Informations du gouvernement sur le Covid-19</a> 
-            <div class="footer-line" >Plus d’infos au <a class="num-08" href="tel:0800130000">0 800 130 000</a></div>
+            <div class="footer-line" >Plus d’infos au <a class="num-08" href="tel:0800130000" title="Numéro vert - appel gratuit depuis un poste fixe en France">0 800 130 000</a></div>
             <p class="footer-line" id="version"></p>
         </div>
     </footer> 

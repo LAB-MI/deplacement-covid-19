@@ -43,3 +43,15 @@
 - 💄 Add underline on hover links
 ### Fixes
 - Fix Typo site.webmanifest (#52)
+## [1.1.3] - 2020-04-23
+### Added
+- Add Code of conduct
+### Fixes
+- Fix Typo (#60, #81)
+- ♿ Expose aria-invalid field assistance technologies (#24)
+- ♿ Add title to open stores link and add more explicit text (#45)
+- Fix atomic date format (#65)
+- Add dark mode (#83)
+- Don't use localStorage, use javascript object instead (#33)
+- Apply prettier formatter and fix eslint
+- Kiss and Dry code

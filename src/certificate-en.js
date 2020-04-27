@@ -1,25 +1,16 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-
-import './main.css'
-
 import { PDFDocument, StandardFonts } from 'pdf-lib'
 import QRCode from 'qrcode'
-import { library, dom } from '@fortawesome/fontawesome-svg-core'
-import { faEye, faFilePdf } from '@fortawesome/free-solid-svg-icons'
 
 import './check-updates'
+import './icons'
 import { $, $$ } from './dom-utils'
 import pdfBase from './Attestation_deplacement_International_EN-1.pdf'
 
-library.add(faEye, faFilePdf)
-
-dom.watch()
-
-$('#radio-language-fr').addEventListener('click', async event => {
-  window.location.href = `${process.env.PUBLIC_URL === '/' ? '' : process.env.PUBLIC_URL}/index.html`
+$('#radio-language-fr').addEventListener('click', async (event) => {
+  window.location.href = './index.html'
 })
 
-const generateQR = async text => {
+const generateQR = async (text) => {
   try {
     const opts = {
       errorCorrectionLevel: 'M',
@@ -56,14 +47,25 @@ function idealFontSize (font, text, maxWidth, minSize, defaultSize) {
     textWidth = font.widthOfTextAtSize(text, --currentSize)
   }
 
-  return (textWidth > maxWidth) ? null : currentSize
+  return textWidth > maxWidth ? null : currentSize
 }
 
 async function generatePdf (profile, typeNationality, reasons) {
   const creationDate = new Date().toLocaleDateString('fr-FR')
-  const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', 'h')
+  const creationHour = new Date()
+    .toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+    .replace(':', 'h')
 
-  const { lastname, firstname, birthday, nationality, address, zipcode, town, country } = profile
+  const {
+    lastname,
+    firstname,
+    birthday,
+    nationality,
+    address,
+    zipcode,
+    town,
+    country,
+  } = profile
 
   const data = [
     `Cree le: ${creationDate} a ${creationHour}`,
@@ -71,11 +73,11 @@ async function generatePdf (profile, typeNationality, reasons) {
     `Prenom: ${firstname}`,
     `Naissance: ${birthday} (${nationality})`,
     `Adresse: ${address} ${zipcode} ${town} ${country}`,
-    'Sortie: N/A',
+    'Sortie: sans_objet',
     `Motifs: ${typeNationality}-${reasons}`,
   ].join(';\n ')
 
-  const existingPdfBytes = await fetch(pdfBase).then(res => res.arrayBuffer())
+  const existingPdfBytes = await fetch(pdfBase).then((res) => res.arrayBuffer())
 
   const pdfDoc = await PDFDocument.load(existingPdfBytes)
   const page1 = pdfDoc.getPages()[0]
@@ -144,15 +146,24 @@ async function generatePdf (profile, typeNationality, reasons) {
   let locationSize = idealFontSize(font, profile.town, 83, 7, 11)
 
   if (!locationSize) {
-    alert('Le nom de la ville risque de ne pas être affiché correctement en raison de sa longueur. ' +
-      'Essayez d\'utiliser des abréviations ("Saint" en "St." par exemple) quand cela est possible.')
+    alert(
+      'Le nom de la ville risque de ne pas être affiché correctement en raison de sa longueur. ' +
+        'Essayez d\'utiliser des abréviations ("Saint" en "St." par exemple) quand cela est possible.',
+    )
     locationSize = 7
   }
 
   // Fait à :
   drawText(profile.town, 395, 142, locationSize)
   // Le
-  drawText(`${new Date().toLocaleDateString('fr-FR', { month: 'numeric', day: 'numeric' })}`, 488, 142)
+  drawText(
+    `${new Date().toLocaleDateString('fr-FR', {
+      month: 'numeric',
+      day: 'numeric',
+    })}`,
+    488,
+    142,
+  )
 
   const generatedQR = await generateQR(data)
 
@@ -190,7 +201,7 @@ function downloadBlob (blob, fileName) {
 
 function getAndSaveReasons () {
   const values = $$('input[name="field-reason"]:checked')
-    .map(x => x.value)
+    .map((x) => x.value)
     .join('-')
   localStorage.setItem('reasons', values)
   return values
@@ -198,7 +209,7 @@ function getAndSaveReasons () {
 
 function getAndSaveTypeNationality () {
   const typeNationality = $$('input[name="field-type-nationality"]:checked')
-    .map(x => x.value)
+    .map((x) => x.value)
     .join('-')
   localStorage.setItem('typeNationality', typeNationality)
 
@@ -212,17 +223,20 @@ function isFacebookBrowser () {
 }
 
 if (isFacebookBrowser()) {
-  $('#alert-facebook').value = 'ATTENTION !! Vous utilisez actuellement le navigateur Facebook, ce générateur ne fonctionne pas correctement au sein de ce navigateur ! Merci d\'ouvrir Chrome sur Android ou bien Safari sur iOS.'
+  $('#alert-facebook').value =
+    "ATTENTION !! Vous utilisez actuellement le navigateur Facebook, ce générateur ne fonctionne pas correctement au sein de ce navigateur ! Merci d'ouvrir Chrome sur Android ou bien Safari sur iOS."
   $('#alert-facebook').classList.remove('d-none')
 }
 
+const birthdayInput = $('#field-birthday')
 function addSlash () {
-  $('#field-birthday').value = $('#field-birthday').value.replace(/^(\d{2})$/g, '$1/')
-  $('#field-birthday').value = $('#field-birthday').value.replace(/^(\d{2})\/(\d{2})$/g, '$1/$2/')
-  $('#field-birthday').value = $('#field-birthday').value.replace(/\/\//g, '/')
+  birthdayInput.value = birthdayInput.value
+    .replace(/^(\d{2})$/g, '$1/')
+    .replace(/^(\d{2})\/(\d{2})$/g, '$1/$2/')
+    .replace(/\/\//g, '/')
 }
 
-$('#field-birthday').onkeyup = function () {
+birthdayInput.onkeyup = function () {
   const key = event.keyCode || event.charCode
   if (key === 8 || key === 46) {
     return false
@@ -234,14 +248,14 @@ $('#field-birthday').onkeyup = function () {
 
 const snackbar = $('#snackbar')
 
-$('#generate-btn').addEventListener('click', async event => {
+$('#generate-btn').addEventListener('click', async (event) => {
   event.preventDefault()
 
   saveProfile()
   const typeNationality = getAndSaveTypeNationality()
   let reasons
   if (typeNationality === 'fr') {
-    reasons = 'N/A'
+    reasons = 'sans_objet'
   } else {
     reasons = getAndSaveReasons()
   }
@@ -249,7 +263,9 @@ $('#generate-btn').addEventListener('click', async event => {
   const pdfBlob = await generatePdf(getProfile(), typeNationality, reasons)
   localStorage.clear()
   const creationDate = new Date().toLocaleDateString('fr-CA')
-  const creationHour = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', '-')
+  const creationHour = new Date()
+    .toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+    .replace(':', '-')
   downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`)
 
   snackbar.classList.remove('d-none')
@@ -261,7 +277,7 @@ $('#generate-btn').addEventListener('click', async event => {
   }, 6000)
 })
 
-$$('input').forEach(input => {
+$$('input').forEach((input) => {
   const exempleElt = input.parentNode.parentNode.querySelector('.exemple')
   if (input.placeholder && exempleElt) {
     input.addEventListener('input', (event) => {
@@ -295,34 +311,32 @@ const conditions = {
     condition: 'length',
   },
   '#field-zipcode': {
-    condition: 'lenght',
+    condition: 'length',
   },
   '#field-country': {
     condition: 'length',
   },
 }
 
-Object.keys(conditions).forEach(field => {
-  $(field).addEventListener('input', () => {
-    if (conditions[field].condition === 'pattern') {
-      const pattern = conditions[field].pattern
-      if ($(field).value.match(pattern)) {
-        $(field).setAttribute('aria-invalid', 'false')
-      } else {
-        $(field).setAttribute('aria-invalid', 'true')
-      }
+for (const fieldSelector of Object.keys(conditions)) {
+  const field = $(fieldSelector)
+  field.addEventListener('input', () => {
+    const fieldCondition = conditions[fieldSelector].condition
+    if (fieldCondition === 'pattern') {
+      const pattern = conditions[fieldSelector].pattern
+      const isAriaInvalid = field.value.match(pattern)
+      field.setAttribute('aria-invalid', String(isAriaInvalid))
+      return
     }
-    if (conditions[field].condition === 'length') {
-      if ($(field).value.length > 0) {
-        $(field).setAttribute('aria-invalid', 'false')
-      } else {
-        $(field).setAttribute('aria-invalid', 'true')
-      }
+    if (fieldCondition === 'length') {
+      const isAriaInvalid = field.value.length > 0
+      field.setAttribute('aria-invalid', String(isAriaInvalid))
     }
   })
-})
-
-function addVersion () {
-  document.getElementById('version').innerHTML = `${new Date().getFullYear()} - ${process.env.VERSION}`
 }
-addVersion()
+
+(function addVersion () {
+  document.getElementById(
+    'version',
+  ).innerHTML = `${new Date().getFullYear()} - ${process.env.VERSION}`
+})()

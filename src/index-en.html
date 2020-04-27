@@ -26,25 +26,28 @@
     <link rel="manifest" href="./favicons/site.webmanifest">
     <link rel="mask-icon" href="./favicons/safari-pinned-tab.svg" color="#21bf73">
 
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./main.css">
+
     <title>COVID-19 – Generator of international travel certificate to mainland France</title>
 </head>
 <body>
     <header role="banner" class="wrapper">
         <ul class="flex-justify">
-          <img class="logo" src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité.">
-          <fieldset class="form-language">
-              <legend class="legend-language">Select your language</legend>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="field-language" id="radio-language-en" value="en" checked>
-                  <label class="form-check-label" for="radio-language-en">ENGLISH</label>
-                  <img class="flags" src="flag EN.svg">
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="field-language" id="radio-language-fr" value="fr">
-                  <label class="form-check-label" for="radio-language-fr">FRANCAIS</label>
-                  <img class="flags" src="Flag_of_France.svg">
-              </div>
-          </fieldset>
+            <img class="logo" src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité.">
+            <fieldset class="form-language">
+                    <legend class="legend-language">Select your language</legend>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="field-language" id="radio-language-en" value="en" checked>
+                        <label class="form-check-label" for="radio-language-en">ENGLISH</label>
+                        <img class="flags" src="flag EN.svg">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="field-language" id="radio-language-fr" value="fr">
+                        <label class="form-check-label" for="radio-language-fr"><a class="language" href="./index.html">FRANCAIS</a></label>
+                        <img class="flags" src="Flag_of_France.svg">
+                    </div>
+            </fieldset>
         </ul>
         <div>
             <h1 class="flex flex-wrap">
@@ -52,7 +55,7 @@
                     COVID-19
                 </span>
                 <span class="covid-subtitle">
-                  Generator of international travel certificate to mainland France
+                    Generator of international travel certificate to mainland France
                 </span>
             </h1>
 
@@ -64,14 +67,13 @@
                 It is readable with all generic QR code readers.
             </p>
             <p>
-              This certificate must be presented to transportation companies, before boarding, by passengers travelling to
-              mainland France. It must also be presented to border control authorities, for any type of border:
-
-                <ul>
-                    <li>European external borders of France (air, maritime, land including railway connections).</li>
-                    <li>European internal borders of France.</li>
-                </ul>
+                This certificate must be presented to transportation companies, before boarding, by passengers travelling to
+                mainland France. It must also be presented to border control authorities, for any type of border:
             </p>
+            <ul>
+                <li>European external borders of France (air, maritime, land including railway connections).</li>
+                <li>European internal borders of France.</li>
+            </ul>
         </div>
     </header>
     <main role="main">
@@ -348,7 +350,7 @@ who are hold                 ers of a special residence permit or a type D proma
         </p>
 
         <p class="github">
-            The source code of this service is available for consultation on <a href="https://github.com/LAB-MI/deplacement-covid-19" class="github-link">GitHub</a>.
+            The source code of this service is available for consultation on <a href="https://github.com/LAB-MI/deplacement-covid-19" title="GitHub repository - new page" target="_blank" class="github-link">GitHub</a>.
         </p>
         <p class="label-mi">
             Ministry of the Interior - DNUM - SDIT
@@ -358,10 +360,10 @@ who are hold                 ers of a special residence permit or a type D proma
     </main>
     <footer role="contentinfo" class="main-footer">
         <div class="footer-links">
-            <a href="./confidentialite.html" title="Confidentialité - nouvelle page" target="_blank" class="footer-line footer-link">Privacy policy</a>
-            <a href="https://www.interieur.gouv.fr/Infos-du-site/Mentions-legales" title="Mentions légales - nouvelle page" target="_blank" class="footer-line footer-link">Legal notices</a>
-            <a href="https://www.gouvernement.fr/info-coronavirus" title="Informations du gouvernement sur le Covid-19 - nouvelle page" target="_blank" class="footer-line footer-link">Government information on COVID-19</a>
-            <div class="footer-line" >For more information, call <a class="num-08" href="tel:0800130000">0 800 130 000</a></div>
+            <a href="./confidentialite.html" title="Privacy policy - new page" target="_blank" class="footer-line footer-link">Privacy policy</a>
+            <a href="https://www.interieur.gouv.fr/Infos-du-site/Mentions-legales" title="Legal notices - new page" target="_blank" class="footer-line footer-link">Legal notices</a>
+            <a href="https://www.gouvernement.fr/info-coronavirus" title="Government information on covid-19 - new page" target="_blank" class="footer-line footer-link">Government information on COVID-19</a>
+            <div class="footer-line" >For more information, call <a class="num-08" href="tel:0800130000" title="Toll free number from mainland France">0 800 130 000</a></div>
             <p class="footer-line" id="version"></p>
         </div>
     </footer>

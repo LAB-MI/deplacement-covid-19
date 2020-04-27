@@ -15,7 +15,8 @@
 }
 
 body {
-  margin: 20px;
+  margin-top: 20px;
+  color: #444;
 }
 
 form, #alert-print {
@@ -74,12 +75,14 @@ canvas {
 
 a {
   color: #000191;
+  text-decoration: underline;
 }
 
 .wrapper {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  padding: 1em;
 }
 
 #form-profile .form-check {
@@ -168,6 +171,12 @@ input:valid+span:after {
   width: 50%;
 }
 
+.language,
+.language:hover {
+  color: #444;
+  text-decoration: none;
+}
+
 fieldset .form-language {
   display: flex;
   align-items: right;
@@ -176,13 +185,13 @@ fieldset .form-language {
 .legend-language {
   text-align: left;
   font-size: 1rem;
-  color: #000000;
+  color: #444;
 }
 
 .form-language .form-check-label {
   font-size: 1rem;
   font-weight: bold;
-  color: #000000;
+  color: #444;
 }
 
 .flags {
@@ -280,7 +289,7 @@ fieldset .form-language {
 
 .footer-link:hover {
   text-decoration: underline;
-  color: #ffffff;
+  color: #0a81ff;
 }
 
 .footer-link:focus {

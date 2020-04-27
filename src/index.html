@@ -26,6 +26,9 @@
     <link rel="manifest" href="./favicons/site.webmanifest">
     <link rel="mask-icon" href="./favicons/safari-pinned-tab.svg" color="#21bf73">
 
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./main.css">
+
     <title>COVID-19 – Générateur d'attestation de déplacement international dérogatoire vers la France métropolitaine</title>
 </head>
 <body>
@@ -36,7 +39,7 @@
               <legend class="legend-language">Choisissez votre langue</legend>
               <div class="form-check">
                   <input class="form-check-input" type="radio" name="field-language" id="radio-language-en" value="en">
-                  <label class="form-check-label" for="radio-language-en">ENGLISH</label>
+                  <label class="form-check-label" for="radio-language-en"><a class="language" href="./index-en.html">ENGLISH</a></label>
                   <img class="flags" src="flag EN.svg">
               </div>
               <div class="form-check">
@@ -338,16 +341,13 @@
             </div>
         </form>
 
-
-    </div>
-    <div class="">
         <p id="footnotes">
             <span id="footnote1">[1] Royaume-Uni, Islande, Liechtenstein, Norvège, Andorre, Monaco, Suisse, Saint-Marin, Saint Siège.</span><br>
             <span id="footnote2">[2] Ressortissants de l’Union européenne et ressortissants britanniques, ainsi que les ressortissants islandais, liechtensteinois, norvégiens, andorrans, monégasques, suisses, saint-marinais, citoyens du Saint Siège (directive 2004/38/CE).</span>
         </p>
 
         <p class="github">
-            Le code source de ce service est consultable sur <a href="https://github.com/LAB-MI/deplacement-covid-19" class="github-link">Github</a>.
+            Le code source de ce service est consultable sur <a href="https://github.com/LAB-MI/deplacement-covid-19" title="Dépôt GitHub - nouvelle page" target="_blank" class="github-link">GitHub</a>.
         </p>
         <p class="label-mi">
             Ministère de l'Intérieur - DNUM - SDIT
@@ -360,7 +360,7 @@
             <a href="./confidentialite.html" title="Confidentialité - nouvelle page" target="_blank" class="footer-line footer-link">Confidentialité</a>
             <a href="https://www.interieur.gouv.fr/Infos-du-site/Mentions-legales" title="Mentions légales - nouvelle page" target="_blank" class="footer-line footer-link">Mentions légales</a>
             <a href="https://www.gouvernement.fr/info-coronavirus" title="Information du gouvernement sur le Covid-19 - nouvelle page" target="_blank" class="footer-line footer-link">Informations du gouvernement sur le Covid-19</a>
-            <div class="footer-line" >Plus d’infos au <a class="num-08" href="tel:0800130000">0 800 130 000</a></div>
+            <div class="footer-line" >Plus d’infos au <a class="num-08" href="tel:0800130000" title="Numéro vert - appel gratuit depuis un poste fixe en France">0 800 130 000</a></div>
             <p class="footer-line" id="version"></p>
         </div>
     </footer>

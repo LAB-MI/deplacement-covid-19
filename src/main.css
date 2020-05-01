@@ -319,11 +319,6 @@ input:valid+span:after {
   background-color: #3031C1;
 }
 
-.btn-attestation:disabled {
-  background-color: #cecece !important;
-  border-color: #cecece !important;
-}
-
 .github {
   font-size: 0.7em;
   text-align: center;

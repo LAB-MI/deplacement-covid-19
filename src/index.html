@@ -55,12 +55,6 @@
     <p class="alert  alert-danger  d-none" role="alert" id="alert-facebook"></p>
 
     <div class="wrapper">
-        <p class="text-center mt-5">
-            <button type="button" id="prefill-btn" class="btn btn-primary btn-attestation"><span ><i class="fa fa-address-book inline-block mr-1"></i>  Pré-remplir</span></button>
-        </p>
-        <p id="prefill-alert" class="text-center d-none">
-            Vous devez remplir l'attestation une première fois pour pouvoir pré-remplir les suivantes.
-        </p>
         <form id="form-profile" accept-charset="UTF-8">
             <h2 class="titre-2">Remplissez en ligne votre attestation numérique :</h2>
             <p class="text-alert">Tous les champs sont obligatoires.</p>
@@ -253,7 +247,11 @@
                     <span class="validity" aria-hidden="true"></span>
                 </div>
             </div>
-            
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="field-save" id="checkbox-save">
+                <label class="form-check-label" for="checkbox-save">Sauvegarder mes informations sur mon appareil afin de pré-remplir les prochaines attestations. Cette option n'est pas conseillée si vous utilisez un appareil partagé ou public.</label>
+            </div>
             
             <p class="text-center mt-5">
                 <button type="button" id="generate-btn" class="btn btn-primary btn-attestation"><span ><i class="fa fa-file-pdf inline-block mr-1"></i>  Générer mon attestation</span></button>

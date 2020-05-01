@@ -241,9 +241,16 @@ $('#generate-btn').addEventListener('click', async (event) => {
   const invalid = validateAriaFields()
   if (invalid) return
 
+  const profile = getProfile()
+
+  if ($('#checkbox-save').checked) {
+    saveProfile(profile)
+  } else {
+    clearProfile()
+  }
+
   const reasons = getReasons()
-  const pdfBlob = await generatePdf(getProfile(), reasons)
-  checkPrefill()
+  const pdfBlob = await generatePdf(profile, reasons)
   const creationInstant = new Date()
   const creationDate = creationInstant.toLocaleDateString('fr-CA')
   const creationHour = creationInstant
@@ -345,35 +352,50 @@ const SAVED_FIELDS = [
   'birthday',
 ]
 
-function prefill () {
-  const profile = getProfile()
+const SAVE_ID = "save"
 
+function saveProfile (profile) {
   SAVED_FIELDS.forEach((field) => {
-    const value = profile[field]
-    if (value) {
-      $(`#field-${field}`).value = value
-    }
+    localStorage.setItem(field, profile[field])
   })
+  localStorage.setItem(SAVE_ID, '1')
 }
 
-function checkPrefill () {
-  const profile = getProfile()
-  const canPrefill = !!profile.firstname
+function loadProfile () {
+  const profile = SAVED_FIELDS.reduce(
+    (acc, field) => ({
+      ...acc,
+      [field]: localStorage.getItem(field),
+    }),
+    {}
+  )
 
-  if (!canPrefill) {
-    $('#prefill-alert').classList.remove('d-none')
-    $('#prefill-btn').disabled = true
-  } else {
-    $('#prefill-alert').classList.add('d-none')
-    $('#prefill-btn').disabled = false
+  return profile
+}
+
+function clearProfile () {
+  SAVED_FIELDS.forEach((field) => {
+    localStorage.removeItem(field)
+  })
+  localStorage.removeItem(SAVE_ID)
+}
+
+function prefill () {
+  const hasProfileSave = localStorage.getItem(SAVE_ID)
+  if (hasProfileSave) {
+    const profile = loadProfile()
+
+    SAVED_FIELDS.forEach((field) => {
+      const value = profile[field]
+      if (value) {
+        $(`#field-${field}`).value = value
+      }
+      $('#checkbox-save').checked = true
+    })
   }
 }
 
-$('#prefill-btn').addEventListener('click', () => {
-  prefill()
-})
-
-checkPrefill()
+prefill();
 
 (function addVersion () {
   document.getElementById(

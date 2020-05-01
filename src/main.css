@@ -14,8 +14,32 @@
   font-style: normal;
 }
 
+html {
+  background: white;
+}
+
+@supports (font: -apple-system-body) {
+  html {
+    font: -apple-system-body !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background: #222;
+  }
+}
+
 body {
-  margin: 20px;
+    margin: 20px;
+    background: white;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #222;
+    }
 }
 
 form, #alert-print {
@@ -25,18 +49,26 @@ form, #alert-print {
 
 h1 {
 	font-size: 2em;
-
+    color: black;
 }
 
+@media (prefers-color-scheme: dark) {
+  h1 {
+    color: white;
+    background-color: white;
+  }
+}
+
+
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
+@media (min-width: 576px) {
   h1 {
     font-size: 2.5em;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
   h1 {
     font-size: 3em;
   }
@@ -51,12 +83,33 @@ h1.flex.flex-wrap {
   flex-wrap: wrap;
 }
 
+@media (prefers-color-scheme: dark) {
+  h1.flex.flex-wrap {
+    border: 1px solid white;
+  }
+}
+
 h2 {
   font-size: large;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  h2 {
+    color: white;
+  }
 }
 
 footer {
   margin-top: 40px;
+  background: white;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  footer {
+    background: #222;
+  }
 }
 
 canvas {
@@ -66,6 +119,23 @@ canvas {
 
 a {
   color: #000191;
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  a {
+    color: #A3A3FF;
+  }
+}
+
+p {
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  p {
+    color: white;
+  }
 }
 
 .wrapper {
@@ -81,6 +151,32 @@ a {
 #form-profile .form-check-label {
   font-weight: 400;
   transform: translateY(-2px);
+}
+
+@media (prefers-color-scheme: dark) {
+  #form-profile .form-check-label {
+    color: #ddd;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  label {
+    color: white;
+  }
+
+  .form-control::placeholder {
+    color: #aaa;
+  }
+
+  input, select, textarea, .form-control, .form-control:focus {
+    background: #333;
+    color: white;
+    border: 1px solid white;
+  }
+
+  .form-control:focus {
+    background: #555;
+  }
 }
 
 #form-generate .form-check {
@@ -155,7 +251,6 @@ input:valid+span:after {
   width: 50%;
 }
 
-
 .covid-title {
   display: flex;
   align-items: center;
@@ -164,6 +259,12 @@ input:valid+span:after {
   font-size: 0.50em;
   color: #ffffff;
   background-color: #000191;
+}
+
+@media (prefers-color-scheme: dark) {
+  .covid-title {
+    background: #2929ff;
+  }
 }
 
 @media (min-width: 992px) {
@@ -188,13 +289,28 @@ input:valid+span:after {
   color: #000000;
 }
 
+@media (prefers-color-scheme: dark) {
+  .covid-subtitle {
+    background: #ad000c;
+  }
+}
 
+.text-alert {
+  text-align: left;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  .text-alert {
+    color: white;
+  }
+}
 
 .btn-attestation {
   padding: 0.9em;
   font-size: 1.2em;
   font-weight: bold;
-  color: #ffffff;
+  color: white;
   background-color: #000191;
   border-radius: 0.5em;
 }
@@ -211,12 +327,23 @@ input:valid+span:after {
 .github {
   font-size: 0.7em;
   text-align: center;
-  color: #000000;
+  color: black;
+}
 
+@media (prefers-color-scheme: dark) {
+  .github {
+    color: white
+  }
 }
 
 .github-link {
   color: #000191;
+}
+
+@media (prefers-color-scheme: dark) {
+  .github-link {
+    color: #A3A3FF;
+  }
 }
 
 .github-link:hover {
@@ -226,7 +353,19 @@ input:valid+span:after {
 .label-mi {
   text-align: center;
   font-size: 1em;
-  color: #000000
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  .label-mi {
+    color: white;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .validity {
+    color: #DDD;
+  }
 }
 
 .main-footer {
@@ -234,13 +373,24 @@ input:valid+span:after {
   justify-content: center;
   padding-top: 3em;
   padding-bottom: 3em;
-  background-color:#000000;
+  background: #222;
   color: white;
 }
 
 .footer-links {
   margin: 0 auto;
   max-width: 500px;
+  background: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  .main-footer {
+    background: #444;
+  }
+
+  .footer-links {
+      background: #444;
+  }
 }
 
 .footer-line {
@@ -252,7 +402,7 @@ input:valid+span:after {
 
 .footer-link:hover {
   text-decoration: underline;
-  color: #ffffff;
+  color: #0a81ff;
 }
 
 .footer-link:focus {
@@ -283,6 +433,13 @@ input:valid+span:after {
       padding: 8px;
     }
 
+    @media (prefers-color-scheme: dark) {
+        td, th {
+            border-color: #A3A3FF;
+            color: white;
+        }
+    }
+
     .header-row {
       font-weight: bold;
       color: #ffffff;
@@ -296,8 +453,13 @@ input:valid+span:after {
       padding: 8px 16px;
       color: #000191;
     }
-  }
 
+    @media (prefers-color-scheme: dark) {
+      .name-col {
+        color: #A3A3FF;
+      }
+    }
+  }
 
   .btn-wrapper {
     display: flex;
@@ -313,13 +475,13 @@ input:valid+span:after {
       text-decoration: none;
       color: #ffffff;
     }
-  
+
   }
   em {
     font-size: .8rem;
   }
 }
-  
+
 .titre-2 {
   text-align: left;
   font-size: 1.5rem;
@@ -337,6 +499,22 @@ input:valid+span:after {
   font-size: 1rem;
   font-weight: bold;
   color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+    .titre-3 {
+        color: white;
+    }
+
+    .titre-4 {
+        color: white;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+  .titre-2 {
+    color: #A3A3FF;
+  }
 }
 
 @media (max-width: 800px){
@@ -405,4 +583,16 @@ input:valid+span:after {
   bottom: 1em;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.alert-info {
+  color: #030494;
+  background-color: #caf8ff;
+  border-color: #caf8ff;
+}
+
+.btn-info {
+  color: #fff;
+  background-color: #030494;
+  border-color: #030494;
 }

@@ -4,7 +4,9 @@
   "description": "Générateur d'attestation de déplacement dérogatoire'",
   "main": "certificate.js",
   "scripts": {
-    "lint": "eslint ./*.js",
+    "lint": "eslint src/*.js",
+    "preformat": "prettier --write \"src/*.js\"",
+    "format": "npm run lint -- --fix",
     "start": "cross-env VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html",
     "clean:dist": "rimraf dist",
     "prebuild": "run-s lint clean:dist",
@@ -43,6 +45,7 @@
     "postcss-nested": "^4.2.1",
     "postcss-nested-ancestors": "^2.0.0",
     "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.0.4",
     "react-snap": "^1.23.0",
     "rimraf": "^3.0.2",
     "serve": "^11.3.0"
@@ -62,7 +65,11 @@
     "minifyHtml": {
       "collapseWhitespace": false,
       "removeComments": false
-    }
+    },
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ]
   },
   "cache": {
     "globPatterns": [

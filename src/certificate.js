@@ -342,7 +342,7 @@ function validateAriaFields () {
   }).some(x => x === 1)
 }
 
-const SAVE_ID = "save"
+const SAVE_ID = 'save'
 const SAVED_FIELDS = [
   'firstname',
   'lastname',
@@ -366,7 +366,7 @@ function loadProfile () {
       ...acc,
       [field]: localStorage.getItem(field),
     }),
-    {}
+    {},
   )
 
   return profile

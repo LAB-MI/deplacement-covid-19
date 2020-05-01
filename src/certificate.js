@@ -342,6 +342,7 @@ function validateAriaFields () {
   }).some(x => x === 1)
 }
 
+const SAVE_ID = "save"
 const SAVED_FIELDS = [
   'firstname',
   'lastname',
@@ -351,8 +352,6 @@ const SAVED_FIELDS = [
   'lieunaissance',
   'birthday',
 ]
-
-const SAVE_ID = "save"
 
 function saveProfile (profile) {
   SAVED_FIELDS.forEach((field) => {

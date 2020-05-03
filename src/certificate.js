@@ -2,7 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import './main.css'
 
-import { PDFDocument, StandardFonts } from 'pdf-lib'
+import fontkit from '@pdf-lib/fontkit'
+import { PDFDocument } from 'pdf-lib'
 import QRCode from 'qrcode'
 
 import './check-updates'
@@ -107,9 +108,14 @@ async function generatePdf (profile, reasons) {
   const existingPdfBytes = await fetch(pdfBase).then((res) => res.arrayBuffer())
 
   const pdfDoc = await PDFDocument.load(existingPdfBytes)
+  pdfDoc.registerFontkit(fontkit)
   const page1 = pdfDoc.getPages()[0]
 
-  const font = await pdfDoc.embedFont(StandardFonts.Helvetica)
+  const ubuntuFontBytes = await fetch(
+    'https://pdf-lib.js.org/assets/ubuntu/Ubuntu-R.ttf',
+  ).then((res) => res.arrayBuffer())
+
+  const font = await pdfDoc.embedFont(ubuntuFontBytes)
   const drawText = (text, x, y, size = 11) => {
     page1.drawText(text, { x, y, size, font })
   }

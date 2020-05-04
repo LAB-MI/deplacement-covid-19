@@ -4,10 +4,10 @@ import QRCode from 'qrcode'
 import './check-updates'
 import './icons'
 import { $, $$ } from './dom-utils'
-import pdfBase from './Attestation-outre-mer-depuis-l-etranger.pdf'
+import pdfBase from './attestation-de-deplacement-international-vers-om.pdf'
 
-$('#radio-language-en').addEventListener('click', async (event) => {
-  window.location.href = './index-en.html'
+$('#radio-language-fr').addEventListener('click', async (event) => {
+  window.location.href = './index.html'
 })
 
 const generateQR = async (text) => {
@@ -83,64 +83,64 @@ async function generatePdf (profile, typeNationality, reasons) {
   const page1 = pdfDoc.getPages()[0]
 
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica)
-  const drawText = (text, x, y, size = 11) => {
+  const drawText = (text, x, y, size = 9) => {
     page1.drawText(text, { x, y, size, font })
   }
 
-  drawText(`${firstname} ${lastname}`, 131, 590)
-  drawText(birthday, 131, 567)
-  drawText(nationality, 131, 545)
-  drawText(`${address} ${zipcode}`, 131, 527)
-  drawText(`${town}, ${country}`, 131, 505)
+  drawText(`${firstname} ${lastname}`, 125, 605)
+  drawText(birthday, 125, 591)
+  drawText(nationality, 125, 578)
+  drawText(`${address} ${zipcode}`, 125, 566)
+  drawText(`${town}, ${country}`, 125, 556)
 
   if (typeNationality === 'tiers') {
     if (reasons.includes('residence')) {
-      drawText('x', 49, 449, 19)
+      drawText('x', 72, 506, 17)
     }
     if (reasons.includes('transit')) {
-      drawText('x', 49, 422, 19)
+      drawText('x', 72, 481, 17)
     }
     if (reasons.includes('prof._sante')) {
-      drawText('x', 49, 396, 19)
+      drawText('x', 72, 455, 17)
     }
     if (reasons.includes('marchandises')) {
-      drawText('x', 49, 380, 19)
+      drawText('x', 72, 442, 17)
     }
     if (reasons.includes('equipage')) {
-      drawText('x', 49, 365, 19)
+      drawText('x', 72, 430, 17)
     }
     if (reasons.includes('diplomatique')) {
-      drawText('x', 49, 338, 19)
+      drawText('x', 72, 416, 17)
     }
-    if (reasons.includes('canadiens')) {
-      drawText('x', 49, 312, 19)
+    if (reasons.includes('frontalier')) {
+      drawText('x', 72, 392, 17)
     }
   }
 
   if (typeNationality === 'eu') {
     if (reasons.includes('residence')) {
-      drawText('x', 49, 275, 19)
+      drawText('x', 72, 357, 17)
     }
     if (reasons.includes('prof._sante')) {
-      drawText('x', 49, 250, 19)
+      drawText('x', 72, 344, 17)
     }
     if (reasons.includes('marchandises')) {
-      drawText('x', 49, 234, 19)
+      drawText('x', 72, 332, 17)
     }
     if (reasons.includes('equipage')) {
-      drawText('x', 49, 218, 19)
+      drawText('x', 72, 319, 17)
     }
     if (reasons.includes('diplomatique')) {
-      drawText('x', 49, 192, 19)
+      drawText('x', 72, 305, 17)
     }
-    if (reasons.includes('sint-marteen')) {
-      drawText('x', 49, 166, 19)
+    if (reasons.includes('sint-maarten')) {
+      drawText('x', 72, 281, 17)
     }
   }
   if (typeNationality === 'fr') {
-    drawText('x', 49, 139, 19)
+    drawText('x', 72, 246, 17)
   }
-  let locationSize = idealFontSize(font, profile.town, 83, 7, 11)
+  let locationSize = idealFontSize(font, profile.town, 83, 7, 9)
 
   if (!locationSize) {
     alert(
@@ -151,15 +151,15 @@ async function generatePdf (profile, typeNationality, reasons) {
   }
 
   // Fait à :
-  drawText(profile.town, 388, 120, locationSize)
+  drawText(profile.town, 365, 208, locationSize)
   // Le
   drawText(
     `${new Date().toLocaleDateString('fr-FR', {
       month: 'numeric',
       day: 'numeric',
     })}`,
-    488,
-    120,
+    479,
+    207,
   )
 
   const generatedQR = await generateQR(data)
@@ -168,7 +168,7 @@ async function generatePdf (profile, typeNationality, reasons) {
 
   page1.drawImage(qrImage, {
     x: 450,
-    y: 552,
+    y: 572,
     width: 100,
     height: 100,
   })
@@ -219,16 +219,16 @@ function isFacebookBrowser () {
   return ua.includes('FBAN') || ua.includes('FBAV')
 }
 
-const alertFacebook = $('#alert-facebook')
 if (isFacebookBrowser()) {
-  alertFacebook.value =
+  $('#alert-facebook').value =
     "ATTENTION !! Vous utilisez actuellement le navigateur Facebook, ce générateur ne fonctionne pas correctement au sein de ce navigateur ! Merci d'ouvrir Chrome sur Android ou bien Safari sur iOS."
-  alertFacebook.classList.remove('d-none')
+  $('#alert-facebook').classList.remove('d-none')
 }
 
 const birthdayInput = $('#field-birthday')
 function addSlash () {
-  birthdayInput.value = birthdayInput.value.replace(/^(\d{2})$/g, '$1/')
+  birthdayInput.value = birthdayInput.value
+    .replace(/^(\d{2})$/g, '$1/')
     .replace(/^(\d{2})\/(\d{2})$/g, '$1/$2/')
     .replace(/\/\//g, '/')
 }

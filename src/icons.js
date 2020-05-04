@@ -1,6 +1,8 @@
 import { library, dom } from '@fortawesome/fontawesome-svg-core'
-import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faFilePdf } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faFilePdf)
+import './check-updates'
+
+library.add(faEye, faFilePdf)
 
 dom.watch()

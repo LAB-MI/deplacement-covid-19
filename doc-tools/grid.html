@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/pdf-lib@1.4.1"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+  </head>
+
+  <body>
+
+    <label for="file">Sélectionner le pdf</label>
+    <input type="file" id="file" name="file" onchange="generatePdf()">
+
+  </body>
+
+  <script>
+
+    const { PDFDocument, StandardFonts, rgb } = PDFLib
+
+    async function generatePdf () {
+      var pdfBase = document.getElementById("file").files[0];
+      var buffer = await pdfBase.arrayBuffer();
+
+      const pdfDoc = await PDFDocument.load(buffer)
+
+      const page1 = pdfDoc.getPages()[0]
+
+      const font = await pdfDoc.embedFont(StandardFonts.Helvetica)
+      const drawText = (text, x, y, size = 11) => {
+        page1.drawText(text, { x, y, size, font })
+      }
+
+      var x;
+      var y;
+      for (x = 25; x < 1000; x += 25) {
+        for (y = 25; y < 1000; y += 25) {
+
+          page1.drawText('.', { x: x, y: y, size: 11, font: font, color:  rgb(0.95, 0.1, 0.1) })
+          page1.drawText(`${x}`, { x: x+3, y: y, size: 7, font: font, color:  rgb(0, 0, 0) })
+          page1.drawText(`${y}`, { x: x+3, y: y-6, size: 7, font: font, color:  rgb(0, 0, 0) })
+
+        }
+      }
+
+      pdfDoc.addPage()
+
+      const pdfBytes = await pdfDoc.save()
+
+			// Trigger the browser to download the PDF document
+      download(pdfBytes, "grid.pdf", "application/pdf");
+    }
+  </script>
+</html>

@@ -1,1 +1,1 @@
-Sitemap: https://media.interieur.gouv.fr/deplacement-covid-19/sitemap.xml
+Sitemap: https://media.interieur.gouv.fr/deplacement-international-vers-outremer-covid-19/sitemap.xml

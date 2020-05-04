@@ -1,17 +1,17 @@
 {
-  "name": "deplacement-covid-19",
+  "name": "deplacement-metropole-vers-outremer-covid-19",
   "version": "0.0.1",
-  "description": "Générateur d'attestation de déplacement dérogatoire'",
+  "description": "Générateur d'attestation de déplacement international dérogatoire vers la France",
   "main": "certificate.js",
   "scripts": {
     "lint": "eslint src/*.js",
     "preformat": "prettier --write \"src/*.js\"",
     "format": "npm run lint -- --fix",
-    "start": "cross-env VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html",
+    "start": "cross-env VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/deplacement-metropole-vers-outremer-covid-19} ./src/index.html",
     "clean:dist": "rimraf dist",
     "prebuild": "run-s lint clean:dist",
-    "build": "parcel build --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html ./src/robots.txt ./src/sitemap.xml",
-    "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-covid-19} react-snap",
+    "build": "parcel build --public-url ${PUBLIC_URL:-/deplacement-metropole-vers-outremer-covid-19} ./src/index.html ./src/index-en.html ./src/robots.txt ./src/sitemap.xml",
+    "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-metropole-vers-outremer-covid-19} react-snap",
     "preserve": "npm run build",
     "serve": "serve dist",
     "serve:dist": "serve dist"
@@ -21,7 +21,7 @@
     "url": "git+https://github.com/lab-mi/deplacement-covid-19"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ministère de l'Intérieur",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lab-mi/deplacement-covid-19/issues"
@@ -58,7 +58,8 @@
     "qrcode": "^1.4.4"
   },
   "browserslist": [
-    "last 5 versions"
+    "last 5 versions",
+    "ios_saf >= 7"
   ],
   "reactSnap": {
     "source": "dist",
@@ -80,6 +81,9 @@
     "strategy": "default",
     "clearDist": false,
     "templatedURLs": {
-      "./": ["index.html"]
-  }  }
+      "./": [
+        "index.html"
+      ]
+    }
+  }
 }

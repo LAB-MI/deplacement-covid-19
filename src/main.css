@@ -14,32 +14,9 @@
   font-style: normal;
 }
 
-html {
-  background: white;
-}
-
-@supports (font: -apple-system-body) {
-  html {
-    font: -apple-system-body !important;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    background: #222;
-  }
-}
-
 body {
-    margin: 20px;
-    background: white;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background: #222;
-    }
+  margin-top: 20px;
+  color: #444;
 }
 
 form, #alert-print {
@@ -49,16 +26,8 @@ form, #alert-print {
 
 h1 {
 	font-size: 2em;
-    color: black;
-}
 
-@media (prefers-color-scheme: dark) {
-  h1 {
-    color: white;
-    background-color: white;
-  }
 }
-
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
@@ -78,38 +47,25 @@ svg {
   height: 1em;
 }
 
+ul.flex-justify {
+  display: -webkit-flex; /* Safari */
+  -webkit-align-items: center; /* Safari 7.0+ */
+   justify-content:space-between;
+   padding: 0;
+   margin: 0;
+}
+
 h1.flex.flex-wrap {
   display: flex;
   flex-wrap: wrap;
 }
 
-@media (prefers-color-scheme: dark) {
-  h1.flex.flex-wrap {
-    border: 1px solid white;
-  }
-}
-
 h2 {
   font-size: large;
-  color: black;
-}
-
-@media (prefers-color-scheme: dark) {
-  h2 {
-    color: white;
-  }
 }
 
 footer {
   margin-top: 40px;
-  background: white;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  footer {
-    background: #222;
-  }
 }
 
 canvas {
@@ -120,22 +76,6 @@ canvas {
 a {
   color: #000191;
   text-decoration: underline;
-}
-
-@media (prefers-color-scheme: dark) {
-  a {
-    color: #A3A3FF;
-  }
-}
-
-p {
-  color: black;
-}
-
-@media (prefers-color-scheme: dark) {
-  p {
-    color: white;
-  }
 }
 
 .wrapper {
@@ -153,30 +93,9 @@ p {
   transform: translateY(-2px);
 }
 
-@media (prefers-color-scheme: dark) {
-  #form-profile .form-check-label {
-    color: #ddd;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  label {
-    color: white;
-  }
-
-  .form-control::placeholder {
-    color: #aaa;
-  }
-
-  input, select, textarea, .form-control, .form-control:focus {
-    background: #333;
-    color: white;
-    border: 1px solid white;
-  }
-
-  .form-control:focus {
-    background: #555;
-  }
+#form-profile .form-nationality-label {
+  font-weight: 800;
+  transform: translateY(-2px);
 }
 
 #form-generate .form-check {
@@ -251,6 +170,34 @@ input:valid+span:after {
   width: 50%;
 }
 
+.language,
+.language:hover {
+  color: #444;
+  text-decoration: none;
+}
+
+fieldset .form-language {
+  display: flex;
+  align-items: right;
+}
+
+.legend-language {
+  text-align: left;
+  font-size: 1rem;
+  color: #444;
+}
+
+.form-language .form-check-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #444;
+}
+
+.flags {
+  width: 20px;
+  height: 15px;
+}
+
 .covid-title {
   display: flex;
   align-items: center;
@@ -259,12 +206,6 @@ input:valid+span:after {
   font-size: 0.50em;
   color: #ffffff;
   background-color: #000191;
-}
-
-@media (prefers-color-scheme: dark) {
-  .covid-title {
-    background: #2929ff;
-  }
 }
 
 @media (min-width: 992px) {
@@ -286,31 +227,15 @@ input:valid+span:after {
 
 .text-alert{
   text-align: left;
+  font-style: italic;
   color: #000000;
-}
-
-@media (prefers-color-scheme: dark) {
-  .covid-subtitle {
-    background: #ad000c;
-  }
-}
-
-.text-alert {
-  text-align: left;
-  color: black;
-}
-
-@media (prefers-color-scheme: dark) {
-  .text-alert {
-    color: white;
-  }
 }
 
 .btn-attestation {
   padding: 0.9em;
   font-size: 1.2em;
   font-weight: bold;
-  color: white;
+  color: #ffffff;
   background-color: #000191;
   border-radius: 0.5em;
 }
@@ -322,23 +247,12 @@ input:valid+span:after {
 .github {
   font-size: 0.7em;
   text-align: center;
-  color: black;
-}
+  color: #000000;
 
-@media (prefers-color-scheme: dark) {
-  .github {
-    color: white
-  }
 }
 
 .github-link {
   color: #000191;
-}
-
-@media (prefers-color-scheme: dark) {
-  .github-link {
-    color: #A3A3FF;
-  }
 }
 
 .github-link:hover {
@@ -348,19 +262,7 @@ input:valid+span:after {
 .label-mi {
   text-align: center;
   font-size: 1em;
-  color: black;
-}
-
-@media (prefers-color-scheme: dark) {
-  .label-mi {
-    color: white;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .validity {
-    color: #DDD;
-  }
+  color: #000000
 }
 
 .main-footer {
@@ -368,24 +270,13 @@ input:valid+span:after {
   justify-content: center;
   padding-top: 3em;
   padding-bottom: 3em;
-  background: #222;
+  background-color:#000000;
   color: white;
 }
 
 .footer-links {
   margin: 0 auto;
   max-width: 500px;
-  background: #222;
-}
-
-@media (prefers-color-scheme: dark) {
-  .main-footer {
-    background: #444;
-  }
-
-  .footer-links {
-      background: #444;
-  }
 }
 
 .footer-line {
@@ -428,13 +319,6 @@ input:valid+span:after {
       padding: 8px;
     }
 
-    @media (prefers-color-scheme: dark) {
-        td, th {
-            border-color: #A3A3FF;
-            color: white;
-        }
-    }
-
     .header-row {
       font-weight: bold;
       color: #ffffff;
@@ -448,13 +332,8 @@ input:valid+span:after {
       padding: 8px 16px;
       color: #000191;
     }
-
-    @media (prefers-color-scheme: dark) {
-      .name-col {
-        color: #A3A3FF;
-      }
-    }
   }
+
 
   .btn-wrapper {
     display: flex;
@@ -494,22 +373,6 @@ input:valid+span:after {
   font-size: 1rem;
   font-weight: bold;
   color: #000000;
-}
-
-@media (prefers-color-scheme: dark) {
-    .titre-3 {
-        color: white;
-    }
-
-    .titre-4 {
-        color: white;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-  .titre-2 {
-    color: #A3A3FF;
-  }
 }
 
 @media (max-width: 800px){
@@ -580,14 +443,21 @@ input:valid+span:after {
   transform: translateX(-50%);
 }
 
-.alert-info {
-  color: #030494;
-  background-color: #caf8ff;
-  border-color: #caf8ff;
+.control:not(:checked) ~ .conditional,
+#radio-fr:not(:checked) ~ .conditional,
+#radio-eu:not(:checked) ~ .conditional,
+#radio-tiers:not(:checked) ~ .conditional  {
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
 }
 
-.btn-info {
-  color: #fff;
-  background-color: #030494;
-  border-color: #030494;
+[id^="footnote"] {
+  margin: 30px auto;
+  max-width: 400px;
+  font-size: 0.8em;
+  color: #000000;
+
 }

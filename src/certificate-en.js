@@ -4,7 +4,7 @@ import QRCode from 'qrcode'
 import './check-updates'
 import './icons'
 import { $, $$ } from './dom-utils'
-import pdfBase from './Attestation-om-depuis-la-metropole.pdf'
+import pdfBase from './attestation-deplacement-metropole-vers-om-en.pdf'
 
 $('#radio-language-en').addEventListener('click', async (event) => {
   window.location.href = './index-en.html'
@@ -83,27 +83,26 @@ async function generatePdf (profile, reasons) {
   const page1 = pdfDoc.getPages()[0]
 
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica)
-  const drawText = (text, x, y, size = 11) => {
+  const drawText = (text, x, y, size = 9) => {
     page1.drawText(text, { x, y, size, font })
   }
 
-  drawText(`${firstname} ${lastname}`, 130, 540)
-  drawText(birthday, 130, 515)
-  drawText(nationality, 130, 500)
-  drawText(`${address} ${zipcode}`, 127, 475)
-  drawText(`${town}, ${country}`, 127, 455)
+  drawText(`${firstname} ${lastname}`, 130, 640)
+  drawText(birthday, 130, 627)
+  drawText(nationality, 130, 612)
+  drawText(`${address} ${zipcode} ${town}, ${country}`, 130, 600)
 
   if (reasons.choice.includes('famille')) {
-    drawText('x', 49, 370, 19)
-    drawText(`${reasons.detail}`, 360, 370)
+    drawText('x', 72, 540, 19)
+    drawText(`${reasons.detail}`, 260, 542)
   }
   if (reasons.choice.includes('sante')) {
-    drawText('x', 49, 350, 19)
-    drawText(`${reasons.detail}`, 310, 352)
+    drawText('x', 72, 519, 19)
+    drawText(`${reasons.detail}`, 210, 522)
   }
   if (reasons.choice.includes('travail')) {
-    drawText('x', 49, 330, 19)
-    drawText(`${reasons.detail}`, 350, 332)
+    drawText('x', 72, 498, 19)
+    drawText(`${reasons.detail}`, 300, 498)
   }
 
   let locationSize = idealFontSize(font, profile.town, 83, 7, 11)
@@ -117,15 +116,15 @@ async function generatePdf (profile, reasons) {
   }
 
   // Fait à :
-  drawText(profile.town, 360, 290, locationSize)
+  drawText(profile.town, 360, 455, locationSize)
   // Le
   drawText(
     `${new Date().toLocaleDateString('fr-FR', {
       month: 'numeric',
       day: 'numeric',
     })}`,
-    478,
-    290,
+    475,
+    455,
   )
 
   const generatedQR = await generateQR(data)

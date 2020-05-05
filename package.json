@@ -4,12 +4,10 @@
   "description": "Générateur d'attestation de déplacement dérogatoire'",
   "main": "certificate.js",
   "scripts": {
-    "lint": "eslint src/*.js",
     "preformat": "prettier --write \"src/*.js\"",
-    "format": "npm run lint -- --fix",
     "start": "cross-env VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html",
     "clean:dist": "rimraf dist",
-    "prebuild": "run-s lint clean:dist",
+    "prebuild": "run-s clean:dist",
     "build": "parcel build --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html ./src/robots.txt ./src/sitemap.xml",
     "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-covid-19} react-snap",
     "preserve": "npm run build",
@@ -80,6 +78,9 @@
     "strategy": "default",
     "clearDist": false,
     "templatedURLs": {
-      "./": ["index.html"]
-  }  }
+      "./": [
+        "index.html"
+      ]
+    }
+  }
 }

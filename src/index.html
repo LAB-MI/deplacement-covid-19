@@ -6,13 +6,13 @@
     <meta name="msapplication-TileColor" content="#603cba">
     <meta name="msapplication-config" content="./favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    <meta name="title" content="Générateur d'attestation de déplacement dérogatoire - COVID-19">
+    <meta name="title" content="Monde d'après - Générateur d'attestation de déplacement en bagnole dérogatoire">
     <meta name="description" content="Ce service officiel génère une version numérique de l’attestation déplacement covid-19 à présenter aux forces de sécurité lors d’un contrôle.">
     <meta name="keywords" content="covid19, covid-19, attestation, déplacement, officielle, gouvernement">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="French">
-    <meta property="og:title" content="Générateur d'attestation de déplacement dérogatoire - COVID-19" />
+    <meta property="og:title" content="Monde d'après - Générateur d'attestation de déplacement en bagnole dérogatoire" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:description" content="Ce service officiel génère une version numérique de l’attestation déplacement covid-19 à présenter aux forces de sécurité lors d’un contrôle." />
     <link rel="canonical" href="https://media.interieur.gouv.fr/deplacement-covid-19/" />
@@ -26,26 +26,37 @@
     <link rel="manifest" href="./favicons/site.webmanifest">
     <link rel="mask-icon" href="./favicons/safari-pinned-tab.svg" color="#21bf73">
 
-    <title>COVID-19 – Générateur d'attestation de déplacement dérogatoire</title>
+    <title>Monde d'après – Générateur d'attestation de déplacement dérogatoire en bagnole</title>
 </head>
 <body>
     <header role="banner" class="wrapper">
-        <picture>
-            <source srcset="/MIN_Interieur_RVB_dark.svg" media="(prefers-color-scheme: dark)">
-            <img src="/MIN_Interieur_RVB.svg" alt="Ministère de l'intérieur. Liberté, égalité, fraternité." class="logo" role="presentation" aria-hidden="true">
-        </picture>
+			<div>
+					<span style="background: #000091; display: inline-block; width: 2.5rem; height: 2rem"></span>
+					<span style="background: white; display: inline-block; width: 1.5rem; height: 2rem"></span>
+					<span style="background: #e1000f; display: inline-block; width: 2.5rem; height: 2rem"></span>
+			
+			</div>
+			<div style="text-transform: uppercase;
+					font-weight: 700;
+					font-size: 200%;
+					width: 19rem;
+					display: block;
+					line-height: 2rem;
+					">Ministère du Monde d'Après</div>
+			<ul style="list-style-type: none; padding: .6rem .1rem .4rem; font-family: Georgia, 'Times New Roman', Times, serif; font-style: italic; font-weight: 400; line-height: 1.2rem"><li>Liberté</li><li>Égalité</li><li>Fraternité</li></ul>
+
 
         <div>
             <h1 class="flex flex-wrap">
-                <span class="covid-title">
-                    COVID-19
-                </span>
                 <span class="covid-subtitle">
                     Générateur d'attestation de&nbsp;déplacement&nbsp;dérogatoire
                 </span>
+                <span class="covid-title">
+				    En bagnole 🚗
+                </span>
             </h1>
             <p class="text-alert">
-                Les données saisies sont stockées exclusivement sur votre téléphone ou votre ordinateur. Aucune information n'est collectée par le Ministère de l'Intérieur.
+                Les données saisies sont stockées exclusivement sur votre téléphone ou votre ordinateur. Aucune information n'est collectée par le Ministère du Monde d'Après.
                 L'attestation pdf générée contient un QR Code. Ce code-barres graphique permet de lire les informations portées dans votre attestation au moment de leur saisie. 
                 Il peut être déchiffré à l'aide de tout type de lecteur de QR code générique.
             </p>
@@ -57,7 +68,7 @@
     <div class="wrapper">
 
         <form id="form-profile" accept-charset="UTF-8">
-            <h2 class="titre-2">Remplissez en ligne votre attestation numérique :</h2>
+            <h2 class="titre-2">Remplissez en ligne votre attestation bagnole numérique :</h2>
             <p class="text-alert">Tous les champs sont obligatoires.</p>
             
             <div class="form-group">
@@ -165,7 +176,7 @@
                         name="town"
                         autocomplete="address-level2"
                         aria-invalid="false"
-                        placeholder="Paris"
+                        placeholder="Grosville"
                         required
                     >
                     <span class="validity" aria-hidden="true" hidden=""></span>
@@ -189,7 +200,7 @@
                         autocomplete="postal-code" 
                         minlength="4"
                         maxlength="5"
-                        placeholder="75001"
+                        placeholder="50340"
                         required
                     >
                     <span class="validity" aria-hidden="true" hidden=""></span>
@@ -198,39 +209,36 @@
             </div>
             
             <fieldset>
-                <legend class="titre-3">Choisissez le ou les motif(s) de sortie</legend>
+                <legend class="titre-3">Choisissez le ou les motif(s) de sortie en bagnole</legend>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-travail" value="travail">
-                    <label class="form-check-label" for="checkbox-travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu'ils sont indispensables à l'exercice d’activités ne pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant être différés.</label>
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-1" value="travail">
+                    <label class="form-check-label" for="checkbox-1">J'habite trop loin du boulot (et c'est compliqué de déménager, surtout en ce moment) ou de ma destination pour ce trajet. Le vélo c'est bien, mais pas 40km par jour.</label>
+                </div>
+    
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-2" value="travail">
+                    <label class="form-check-label" for="checkbox-2">J'aimerais faire mon trajet à vélo, mais le chemin est trop dangereux : ma collectivité n'a pas construit assez de voies où le vélo est prioritaire. </label>
                 </div>
     
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-courses" value="courses">
-                    <label class="form-check-label" for="checkbox-courses">Déplacements pour effectuer des achats de fournitures nécessaires à l’activité professionnelle et des achats de première nécessité dans des établissements dont les activités demeurent autorisées (<a href="https://www.service-public.fr/particuliers/actualites/A13921" class="stores-link" title="Liste des commerces et établissements qui restent ouverts - nouvelle page" target="_blank">liste des commerces et établissements qui restent ouverts</a>).</label>
+                    <label class="form-check-label" for="checkbox-courses">J'ai peur de laisser mon vélo au boulot toute la journée : mon employeur ne m'a pas mis à disposition de garage.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-courses" value="courses">
+                    <label class="form-check-label" for="checkbox-courses">J'ai peur de laisser mon vélo dans ma rue toute la nuit : je vis dans un appartement non équippé en garage vélo.</label>
                 </div>
                 
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-sante" value="sante">
-                    <label class="form-check-label" for="checkbox-sante">Consultations et soins ne pouvant être assurés à distance et ne pouvant être différés ; consultations et soins des patients atteints d'une affection de longue durée.</label>
+                    <label class="form-check-label" for="checkbox-sante">Je ne peux pas faire du vélo pour des raisons de santé.</label>
                 </div>
                 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-famille" value="famille">
-                    <label class="form-check-label" for="checkbox-famille">Déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants.</label>
+                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-sante-velo" value="sante-velo">
+                    <label class="form-check-label" for="checkbox-sante-velo">J'ai un vélo, mais c'est lui qui a des problèmes de santé et je n'ai pas eu le temps encore de le réparer mais je vais le faire, promis, c'est abusé de laisser des vélos moisir dans des garages.</label>
                 </div>
                 
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-sport" value="sport">
-                    <label class="form-check-label" for="checkbox-sport">Déplacements brefs, dans la limite d'une heure quotidienne et dans un rayon maximal d'un kilomètre autour du domicile, liés soit à l'activité physique individuelle des personnes, à l'exclusion de toute pratique sportive collective et de toute proximité avec d'autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie.</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-judiciaire" value="judiciaire">
-                    <label class="form-check-label" for="checkbox-judiciaire">Convocation judiciaire ou administrative.</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-missions" value="missions">
-                    <label class="form-check-label" for="checkbox-missions">Participation à des missions d’intérêt général sur demande de l’autorité administrative.</label>
-                </div>
             </fieldset>
             
             <div class="form-group">
@@ -251,7 +259,7 @@
             
             
             <p class="text-center mt-5">
-                <button type="button" id="generate-btn" class="btn btn-primary btn-attestation"><span ><i class="fa fa-file-pdf inline-block mr-1"></i>  Générer mon attestation</span></button>
+                <button type="button" id="generate-btn" class="btn btn-primary btn-attestation"><span ><i class="fa fa-file-pdf inline-block mr-1"></i>  Générer mon attestation bagnole</span></button>
             </p>
 
             <div class="bg-primary  d-none" id="snackbar">
@@ -261,23 +269,16 @@
     </div>
     <div class="">
         <p class="github">
-            Le code source de ce service est consultable sur <a href="https://github.com/LAB-MI/deplacement-covid-19" class="github-link">GitHub</a>.
+            Le code source de ce service est consultable sur <a href="https://github.com/laem/deplacement-bagnole" class="github-link">GitHub</a>.
         </p>
         <p class="label-mi">
-            Ministère de l'Intérieur - DNUM - SDIT
+			Ministère du Monde d'Après
         </p> 
-        <picture class="center">
-          <source srcset="/logo_dnum_dark.svg" media="(prefers-color-scheme: dark)">
-            <img class="center" src="/logo_dnum.svg" alt="logo dnum">
-        </picture>
     </div>
     </main>
     <footer role="contentinfo" class="main-footer">
         <div class="footer-links">
-            <a href="./confidentialite.html" title="Confidentialité - nouvelle page" target="_blank" class="footer-line footer-link">Confidentialité</a>
-            <a href="https://www.interieur.gouv.fr/Infos-du-site/Mentions-legales" title="Mentions légales - nouvelle page" target="_blank" class="footer-line footer-link">Mentions légales</a>
-            <a href="https://www.gouvernement.fr/info-coronavirus" title="Information du gouvernement sur le Covid-19 - nouvelle page" target="_blank" class="footer-line footer-link">Informations du gouvernement sur le Covid-19</a> 
-            <div class="footer-line" >Plus d’infos au <a class="num-08" href="tel:0800130000" title="Numéro vert - appel gratuit depuis un poste fixe en France">0 800 130 000</a></div>
+				<div class="footer-line">Mentions légales : ce site est une blague, voilà, c'est tout</div>
             <p class="footer-line" id="version"></p>
         </div>
     </footer> 

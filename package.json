@@ -7,7 +7,6 @@
     "preformat": "prettier --write \"src/*.js\"",
     "start": "cross-env VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html",
     "build": "parcel build --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html ./src/robots.txt ./src/sitemap.xml",
-    "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-covid-19} react-snap",
     "preserve": "npm run build",
     "serve": "serve dist",
     "serve:dist": "serve dist"

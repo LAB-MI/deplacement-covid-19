@@ -6,8 +6,6 @@
   "scripts": {
     "preformat": "prettier --write \"src/*.js\"",
     "start": "cross-env VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html",
-    "clean:dist": "rimraf dist",
-    "prebuild": "run-s clean:dist",
     "build": "parcel build --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html ./src/robots.txt ./src/sitemap.xml",
     "postbuild": "PUBLIC_URL=${PUBLIC_URL:-/deplacement-covid-19} react-snap",
     "preserve": "npm run build",
@@ -45,7 +43,6 @@
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.4",
     "react-snap": "^1.23.0",
-    "rimraf": "^3.0.2",
     "serve": "^11.3.0"
   },
   "dependencies": {

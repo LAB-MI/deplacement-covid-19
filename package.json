@@ -5,8 +5,8 @@
   "main": "certificate.js",
   "scripts": {
     "preformat": "prettier --write \"src/*.js\"",
-    "start": "cross-env VERSION=${VERSION:-localversion} parcel --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html",
-    "build": "parcel build --public-url ${PUBLIC_URL:-/deplacement-covid-19} ./src/index.html ./src/robots.txt ./src/sitemap.xml",
+    "start": "cross-env VERSION=${VERSION:-localversion} parcel ./src/index.html",
+    "build": "parcel build ./src/index.html ./src/robots.txt ./src/sitemap.xml",
     "preserve": "npm run build",
     "serve": "serve dist",
     "serve:dist": "serve dist"

@@ -32,7 +32,7 @@ Nous nous engageons à étudier les problèmes qui nous sont signalés par le bi
 
 Compte tenu de la durée de vie prévisible du générateur d’attestation de déplacement ou de voyage, et afin de rester dans une notion d’aménagement raisonnable, nous ne pourrons prendre en compte l’ensemble des propositions d’améliorations formulées. 
 
-Seront privilégiées et traiter prioritairement par l’équipe projet :
+Seront privilégiées et traitées prioritairement par l’équipe projet :
 
 - Les corrections du bugs ;
 - Les corrections liées aux problèmes d’accessibilité (conformément aux exigences définies par le [référentiel général d’amélioration de l'accessibilité](https://www.numerique.gouv.fr/publications/rgaa-accessibilite/)).

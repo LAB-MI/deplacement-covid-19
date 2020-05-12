@@ -49,13 +49,14 @@ form, #alert-print {
 
 h1 {
 	font-size: 2em;
-    color: black;
+  color: black;
 }
 
 @media (prefers-color-scheme: dark) {
   h1 {
     color: white;
     background-color: white;
+    background: #222;
   }
 }
 
@@ -144,17 +145,17 @@ p {
   margin-right: auto;
 }
 
-#form-profile .form-check {
+#form-profile .form-radio .form-check {
   margin-bottom: 1rem;
 }
 
-#form-profile .form-check-label {
+#form-profile .form-radio-label .form-check-label {
   font-weight: 400;
   transform: translateY(-2px);
 }
 
 @media (prefers-color-scheme: dark) {
-  #form-profile .form-check-label {
+  #form-profile .form-radio-label .form-check-label {
     color: #ddd;
   }
 }
@@ -179,7 +180,7 @@ p {
   }
 }
 
-#form-generate .form-check {
+#form-generate .form-radio .form-check {
   margin: 10px;
 }
 
@@ -274,7 +275,7 @@ input:valid+span:after {
 }
 
 .covid-subtitle {
-  display: flex;
+  display: inline-block;
   align-items: center;
   font-size: 0.40em;
   padding: 0.3em;
@@ -284,9 +285,28 @@ input:valid+span:after {
   flex-grow: 1;
 }
 
-.text-alert{
+.note-title {
+  border-bottom: 3px solid #fff;
+}
+
+.highlighted {
+  font-weight: bold;
+  border-bottom: 2px solid;
+}
+
+.footnote-title {
+  color: #fff;
+  font-size: 0.9em;
+}
+
+.text-alert {
   text-align: left;
   color: #000000;
+}
+
+.text-desc {
+  font-style :italic;
+  font-size: 0.8em;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -571,6 +591,20 @@ input:valid+span:after {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+[id^="footnote"] {
+  margin: 30px auto;
+  max-width: 400px;
+  font-size: 0.8em;
+  color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  [id^="footnote"] {
+    color:white;
+    background: #222;
+  }
 }
 
 #update-alert {

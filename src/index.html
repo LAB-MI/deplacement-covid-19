@@ -6,19 +6,19 @@
     <meta name="msapplication-TileColor" content="#603cba">
     <meta name="msapplication-config" content="./favicons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    <meta name="title" content="Générateur d'attestation de déplacement dérogatoire - COVID-19">
-    <meta name="description" content="Ce service officiel génère une version numérique de l’attestation déplacement covid-19 à présenter aux forces de sécurité lors d’un contrôle.">
-    <meta name="keywords" content="covid19, covid-19, attestation, déplacement, officielle, gouvernement">
+    <meta name="title" content="Générateur déclaration de déplacement en dehors de son département et à plus de 100 km de son domicile - COVID-19">
+    <meta name="description" content="Ce service officiel génère une version numérique de la déclaration de déplacement covid-19 à présenter aux forces de sécurité lors d’un contrôle.">
+    <meta name="keywords" content="covid19, covid-19, attestation, déclaration, déplacement, officielle, gouvernement">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="French">
-    <meta property="og:title" content="Générateur d'attestation de déplacement dérogatoire - COVID-19" />
+    <meta property="og:title" content="Déclaration de déplacement en dehors de son département et à plus de 100 km de son domicile - COVID-19" />
     <meta property="og:locale" content="fr_FR" />
-    <meta property="og:description" content="Ce service officiel génère une version numérique de l’attestation déplacement covid-19 à présenter aux forces de sécurité lors d’un contrôle." />
+    <meta property="og:description" content="Ce service officiel génère une version numérique de la déclaration de déplacement covid-19 à présenter aux forces de sécurité lors d’un contrôle." />
     <link rel="canonical" href="https://media.interieur.gouv.fr/deplacement-covid-19/" />
     <meta property="og:url" content="https://media.interieur.gouv.fr/deplacement-covid-19/" />
-    <meta property="og:site_name" content="Générateur d'attestation de déplacement dérogatoire - COVID-19" />
-    <script type='application/ld+json'>{"@context":"http://www.schema.org","@type":"GovernmentOrganization","name":"Générateur d'attestation de déplacement dérogatoire - COVID-19","description":"Ce service officiel génère une version numérique de l’attestation déplacement covid-19 à présenter aux forces de sécurité lors d’un contrôle.","address":{"@type":"PostalAddress","addressCountry":"France"}}</script>
+    <meta property="og:site_name" content="Déclaration de déplacement en dehors de son département et à plus de 100 km de son domicile - COVID-19" />
+    <script type='application/ld+json'>{"@context":"http://www.schema.org","@type":"GovernmentOrganization","name":"Déclaration de déplacement en dehors de son département et à plus de 100 km de son domicile - COVID-19","description":"Ce service officiel génère une version numérique de la déclaration de déplacement covid-19 à présenter aux forces de sécurité lors d’un contrôle.","address":{"@type":"PostalAddress","addressCountry":"France"}}</script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicons/favicon-32x32.png">
@@ -26,7 +26,7 @@
     <link rel="manifest" href="./favicons/site.webmanifest">
     <link rel="mask-icon" href="./favicons/safari-pinned-tab.svg" color="#21bf73">
 
-    <title>COVID-19 – Générateur d'attestation de déplacement dérogatoire</title>
+    <title>COVID-19 – Déclaration de déplacement en dehors de son département et à plus de 100km de son domicile</title>
 </head>
 <body>
     <header role="banner" class="wrapper">
@@ -41,13 +41,14 @@
                     COVID-19
                 </span>
                 <span class="covid-subtitle">
-                    Générateur d'attestation de&nbsp;déplacement&nbsp;dérogatoire
+                    Déclaration de déplacement en dehors de son département <span class="note-title">et</span> à plus de 100 km de son domicile <a class="footnote-title" href="#footnote1">[1]</a>
                 </span>
             </h1>
+            <p class="text-desc">
+                En application des mesures générales prises pour faire face à l’épidémie de covid-19 dans le cadre de l’état d’urgence sanitaire.
+            </p>
             <p class="text-alert">
-                Les données saisies sont stockées exclusivement sur votre téléphone ou votre ordinateur. Aucune information n'est collectée par le Ministère de l'Intérieur.
-                L'attestation pdf générée contient un QR Code. Ce code-barres graphique permet de lire les informations portées dans votre attestation au moment de leur saisie. 
-                Il peut être déchiffré à l'aide de tout type de lecteur de QR code générique.
+                La résidence peut correspondre à la résidence principale ou à une résidence habituelle (résidence secondaire, résidence d’un célibataire géographique...). <span class="highlighted">Un justificatif de domicile </span><a href="#footnote2">[2]</a> de moins d’un an doit être présenté en même temps que cette déclaration en cas de contrôle, <span class="highlighted">ainsi que tout document justifiant le motif du déplacement</span> correspondant à l’un des cas listés ci-dessous. Ces documents pourront également être présentés sur demande des entreprises de transport.
             </p>
         </div>
     </header>
@@ -57,7 +58,7 @@
     <div class="wrapper">
 
         <form id="form-profile" accept-charset="UTF-8">
-            <h2 class="titre-2">Remplissez en ligne votre attestation numérique :</h2>
+            <h2 class="titre-2">Remplissez en ligne votre déclaration numérique :</h2>
             <p class="text-alert">Tous les champs sont obligatoires.</p>
             
             <div class="form-group">
@@ -196,59 +197,163 @@
                 </div>
                 <p class="exemple"></p>
             </div>
+
+            <fieldset class="form-group">
+                <legend class="titre-3">Je me rends</legend>
             
-            <fieldset>
-                <legend class="titre-3">Choisissez le ou les motif(s) de sortie</legend>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-travail" value="travail">
-                    <label class="form-check-label" for="checkbox-travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu'ils sont indispensables à l'exercice d’activités ne pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant être différés.</label>
+                <div class="form-group">
+                    <label for="field-datesortie">Le</label>
+                    <div class="input-group  align-items-center">
+                        <input type="date" class="form-control" id="field-datesortie" name="datesortie" autocomplete="off" placeholder="JJ/MM/YYYY" aria-invalid="false" required>
+                        <span class="validity" aria-hidden="true"></span>
+                    </div>
                 </div>
-    
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-courses" value="courses">
-                    <label class="form-check-label" for="checkbox-courses">Déplacements pour effectuer des achats de fournitures nécessaires à l’activité professionnelle et des achats de première nécessité dans des établissements dont les activités demeurent autorisées (<a href="https://www.service-public.fr/particuliers/actualites/A13921" class="stores-link" title="Liste des commerces et établissements qui restent ouverts - nouvelle page" target="_blank">liste des commerces et établissements qui restent ouverts</a>).</label>
+            
+                <div class="form-group">
+                    <label for="field-destinationtown" id="field-destinationtown-label">Dans la ville de <a href="#footnote3">[3]</a></label>
+                    <div class="input-group  align-items-center">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="field-destinationtown"
+                            name="destinationtown"
+                            autocomplete="false"
+                            aria-invalid="false"
+                            placeholder="Lille"
+                            required
+                        >
+                        <span class="validity" aria-hidden="true" hidden=""></span>
+                    </div>
+                    <p class="exemple"></p>
+                </div>
+            
+                <div class="form-group">
+                    <label for="field-destinationcounty" id="field-destinationcounty-label" >Département</label>
+                    <div class="input-group  align-items-center">
+                        <input
+                            type="text"
+                            pattern="[0-9]{1}[0-9 aAbB]"
+                            min="01"
+                            max="99"
+                            class="form-control"
+                            id="field-destinationcounty"
+                            name="destinationcounty"
+                            aria-invalid="false"
+                            autocomplete="false" 
+                            length="2"
+                            placeholder="59"
+                            required
+                        >
+                        <span class="validity" aria-hidden="true" hidden=""></span>
+                    </div>
+                    <p class="exemple"></p>
                 </div>
                 
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-sante" value="sante">
-                    <label class="form-check-label" for="checkbox-sante">Consultations et soins ne pouvant être assurés à distance et ne pouvant être différés ; consultations et soins des patients atteints d'une affection de longue durée.</label>
-                </div>
-                
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-famille" value="famille">
-                    <label class="form-check-label" for="checkbox-famille">Déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants.</label>
-                </div>
-                
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-sport" value="sport">
-                    <label class="form-check-label" for="checkbox-sport">Déplacements brefs, dans la limite d'une heure quotidienne et dans un rayon maximal d'un kilomètre autour du domicile, liés soit à l'activité physique individuelle des personnes, à l'exclusion de toute pratique sportive collective et de toute proximité avec d'autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie.</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-judiciaire" value="judiciaire">
-                    <label class="form-check-label" for="checkbox-judiciaire">Convocation judiciaire ou administrative.</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="field-reason" id="checkbox-missions" value="missions">
-                    <label class="form-check-label" for="checkbox-missions">Participation à des missions d’intérêt général sur demande de l’autorité administrative.</label>
+                <div class="form-check align-items-center">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        name="field-recurrent"
+                        id="check-recurrent"
+                        value="recurrent"
+                    >
+                    <label class="form-check-label" for="check-recurrent">
+                        (s’agit-il d’un déplacement professionnel récurrent <a href="#footnote4">[4]</a> ?)
+                    </label>
                 </div>
             </fieldset>
             
-            <div class="form-group">
-                <label for="field-datesortie">Date de sortie</label>
-                <div class="input-group  align-items-center">
-                    <input type="date" class="form-control" id="field-datesortie" name="datesortie" autocomplete="off" placeholder="JJ/MM/YYYY" aria-invalid="false" required>
-                    <span class="validity" aria-hidden="true"></span>
+            <fieldset>
+                <legend class="titre-3">Choisissez un motif de sortie</legend>
+                <div class="form-radio align-items-center">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="field-reason"
+                        id="radio-travail"
+                        value="travail"
+                    >
+                    <label class="form-radio-label" for="radio-travail">
+                        trajets entre le lieu de résidence et le ou les lieux d’exercice de l’activité professionnelle, et déplacements professionnels qui ne peuvent pas être reportés (cas n°1) ;
+                    </label>
                 </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="field-heuresortie">Heure de sortie</label>
-                <div class="input-group  align-items-center">
-                    <input type="time" class="form-control" id="field-heuresortie" name="heure" autocomplete="off" aria-invalid="false" required>
-                    <span class="validity" aria-hidden="true"></span>
+    
+                <div class="form-radio align-items-center">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="field-reason"
+                        id="radio-ecole"
+                        value="ecole"
+                    >
+                    <label class="form-radio-label" for="radio-ecole">
+                        trajets entre le lieu de résidence et l’établissement scolaire effectué par une personne qui y est scolarisée ou en accompagnement d’une personne scolarisée et trajets nécessaires pour se rendre à des examens ou des concours (cas n°2) ;
+                    </label>
                 </div>
-            </div>
-            
+                
+                <div class="form-radio align-items-center">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="field-reason"
+                        id="radio-sante"
+                        value="sante"
+                    >
+                    <label class="form-radio-label" for="radio-sante">
+                        déplacements pour consultations et soins spécialisés ne pouvant être assurés à distance ou à proximité du domicile (cas n°3) ;
+                    </label>
+                </div>
+                
+                <div class="form-radio align-items-center">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="field-reason"
+                        id="radio-famille"
+                        value="famille"
+                    >
+                    <label class="form-radio-label" for="radio-famille">
+                        déplacements pour motif familial impérieux, pour l’assistance des personnes vulnérables et pour la garde d’enfants (cas n°4) ;
+                    </label>
+                </div>
+                
+                <div class="form-radio align-items-center">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="field-reason"
+                        id="radio-police"
+                        value="police"
+                    >
+                    <label class="form-radio-label" for="radio-police">
+                        déplacements résultant d’une obligation de présentation aux services de police ou de gendarmerie nationales ou à tout autre service ou professionnel, imposée par l’autorité de police administrative ou l’autorité judiciaire (cas n°5) ;
+                    </label>
+                </div>
+                <div class="form-radio align-items-center">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="field-reason"
+                        id="radio-judiciaire"
+                        value="judiciaire"
+                    >
+                    <label class="form-radio-label" for="radio-judiciaire">
+                        déplacements résultant d’une convocation émanant d’une juridiction administrative ou de l’autorité judiciaire (cas n°6) ;
+                    </label>
+                </div>
+                <div class="form-radio align-items-center">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="field-reason"
+                        id="radio-missions"
+                        value="missions"
+                    >
+                    <label class="form-radio-label" for="radio-missions">
+                        déplacements aux seules fins de participer à des missions d’intérêt général sur demande de l’autorité administrative et dans les conditions qu’elle précise (cas n°7).
+                    </label>
+                </div>
+            </fieldset>            
             
             <p class="text-center mt-5">
                 <button type="button" id="generate-btn" class="btn btn-primary btn-attestation"><span ><i class="fa fa-file-pdf inline-block mr-1"></i>  Générer mon attestation</span></button>
@@ -260,6 +365,20 @@
         </form>
     </div>
     <div class="">
+        <p id="footnotes">
+            <span id="footnote1">
+                [1] La distance de 100 km doit être calculée à vol d’oiseau.
+            </span><br>
+            <span id="footnote2">
+                [2] Le justificatif de domicile doit comporter le nom et le prénom et être daté de moins d’un an. Sont notamment admis : les factures de téléphone, d’électricité, de gaz ou d’eau, les quittances de loyer, les avis d’imposition ou de taxe d’habitation, l’attestation d’assurance du logement ou un relevé Caf mentionnant les aides liées au logement.
+            </span><br>
+            <span id="footnote3">
+                [3] Pour les déplacements professionnels qui ne peuvent pas être différés, il est possible d’indiquer « déplacement itinérant » à la place de la commune de destination s’ils concernent plusieurs communes, à condition de pouvoir le justifier en cas de contrôle.
+            </span><br>
+            <span id="footnote4">
+                [4] Si les déplacements professionnels (cas n°1) sont récurrents il n’est pas nécessaire de remplir cette déclaration quotidiennement.
+            </span>
+        </p>
         <p class="github">
             Le code source de ce service est consultable sur <a href="https://github.com/LAB-MI/deplacement-covid-19" class="github-link">GitHub</a>.
         </p>

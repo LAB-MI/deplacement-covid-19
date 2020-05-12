@@ -55,3 +55,8 @@
 - Don't use localStorage, use javascript object instead (#33)
 - Apply prettier formatter and fix eslint
 - Kiss and Dry code
+## [2.1.0] - 2020-05-10
+## Added
+- New release: 100km
+## Removed
+- Old pdf

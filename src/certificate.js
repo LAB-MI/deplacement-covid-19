@@ -41,12 +41,6 @@ function setReleaseDateTime () {
   const releaseDateInput = $('#field-datesortie')
   const loadedDate = new Date()
   releaseDateInput.value = getFormattedDate(loadedDate)
-
-  const hour = pad(loadedDate.getHours())
-  const minute = pad(loadedDate.getMinutes())
-
-  const releaseTimeInput = $('#field-heuresortie')
-  releaseTimeInput.value = `${hour}:${minute}`
 }
 
 function getProfile () {
@@ -54,7 +48,7 @@ function getProfile () {
   for (const field of $$('#form-profile input')) {
     if (field.id === 'field-datesortie') {
       const dateSortie = field.value.split('-')
-      fields[field.id.substring('field-'.length)] = `${dateSortie[2]}/${dateSortie[1]}/${dateSortie[0]}`
+      fields[field.id.substring('field-'.length)] = `${dateSortie[2]}/${dateSortie[1]}`
     } else {
       fields[field.id.substring('field-'.length)] = field.value
     }
@@ -73,7 +67,7 @@ function idealFontSize (font, text, maxWidth, minSize, defaultSize) {
   return textWidth > maxWidth ? null : currentSize
 }
 
-async function generatePdf (profile, reasons) {
+async function generatePdf (profile, reason) {
   const creationInstant = new Date()
   const creationDate = creationInstant.toLocaleDateString('fr-FR')
   const creationHour = creationInstant
@@ -88,11 +82,10 @@ async function generatePdf (profile, reasons) {
     address,
     zipcode,
     town,
+    destinationtown,
+    destinationcounty,
     datesortie,
-    heuresortie,
   } = profile
-  const releaseHours = String(heuresortie).substring(0, 2)
-  const releaseMinutes = String(heuresortie).substring(3, 5)
 
   const data = [
     `Cree le: ${creationDate} a ${creationHour}`,
@@ -100,13 +93,22 @@ async function generatePdf (profile, reasons) {
     `Prenom: ${firstname}`,
     `Naissance: ${birthday} a ${lieunaissance}`,
     `Adresse: ${address} ${zipcode} ${town}`,
-    `Sortie: ${datesortie} a ${releaseHours}h${releaseMinutes}`,
-    `Motifs: ${reasons}`,
-  ].join('; ')
+    `Sortie: ${datesortie} vers ${destinationtown} (${destinationcounty})`,
+    `Motifs: ${reason}`,
+  ].join(';\n ')
 
   const existingPdfBytes = await fetch(pdfBase).then((res) => res.arrayBuffer())
 
   const pdfDoc = await PDFDocument.load(existingPdfBytes)
+
+  // set pdf metadata
+  pdfDoc.setTitle('COVID-19 - Déclaration de déplacement')
+  pdfDoc.setSubject('Déclaration de déplacement en dehors de son département et à plus de 100 km de son domicile')
+  pdfDoc.setKeywords(['covid19', 'covid-19', 'attestation', 'déclaration', 'déplacement', 'officielle', 'gouvernement'])
+  pdfDoc.setProducer('DNUM/SDIT')
+  pdfDoc.setCreator('')
+  pdfDoc.setAuthor('Ministère d l\'intérieur')
+
   const page1 = pdfDoc.getPages()[0]
 
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica)
@@ -114,31 +116,44 @@ async function generatePdf (profile, reasons) {
     page1.drawText(text, { x, y, size, font })
   }
 
-  drawText(`${firstname} ${lastname}`, 123, 686)
-  drawText(birthday, 123, 661)
-  drawText(lieunaissance, 92, 638)
-  drawText(`${address} ${zipcode} ${town}`, 134, 613)
+  drawText(lastname, 80, 650)
+  drawText(firstname, 105, 625)
+  drawText(`${birthday} à ${lieunaissance}`, 173, 601)
+  drawText(address, 198, 577)
+  drawText(`${zipcode} ${town}`, 50, 557)
 
-  if (reasons.includes('travail')) {
-    drawText('x', 76, 527, 19)
+  if (reason !== '') {
+    // Date sortie
+    drawText(`${profile.datesortie}`, 139, 521, 11)
   }
-  if (reasons.includes('courses')) {
-    drawText('x', 76, 478, 19)
+
+  drawText(destinationtown, 155, 505)
+  drawText(destinationcounty, 470, 505)
+
+  if ($('input[name="field-recurrent"]:checked')) {
+    drawText('x', 508, 518, 20)
   }
-  if (reasons.includes('sante')) {
-    drawText('x', 76, 436, 19)
+
+  if (reason === 'travail') {
+    drawText('x', 44, 461, 20)
   }
-  if (reasons.includes('famille')) {
-    drawText('x', 76, 400, 19)
+  if (reason === 'ecole') {
+    drawText('x', 44, 428, 20)
   }
-  if (reasons.includes('sport')) {
-    drawText('x', 76, 345, 19)
+  if (reason === 'sante') {
+    drawText('x', 44, 381, 20)
   }
-  if (reasons.includes('judiciaire')) {
-    drawText('x', 76, 298, 19)
+  if (reason === 'famille') {
+    drawText('x', 44, 348, 20)
   }
-  if (reasons.includes('missions')) {
-    drawText('x', 76, 260, 19)
+  if (reason === 'police') {
+    drawText('x', 44, 315, 20)
+  }
+  if (reason === 'judiciaire') {
+    drawText('x', 44, 267, 20)
+  }
+  if (reason === 'missions') {
+    drawText('x', 44, 235, 20)
   }
   let locationSize = idealFontSize(font, profile.town, 83, 7, 11)
 
@@ -150,28 +165,23 @@ async function generatePdf (profile, reasons) {
     locationSize = 7
   }
 
-  drawText(profile.town, 111, 226, locationSize)
-
-  if (reasons !== '') {
-    // Date sortie
-    drawText(`${profile.datesortie}`, 92, 200)
-    drawText(releaseHours, 200, 201)
-    drawText(releaseMinutes, 220, 201)
-  }
+  const shortCreationDate = `${creationDate.split('/')[0]}/${creationDate.split('/')[1]}`
+  drawText(profile.town, 74, 195, locationSize)
+  drawText(shortCreationDate, 314, 195, locationSize)
 
   // Date création
-  drawText('Date de création:', 464, 150, 7)
-  drawText(`${creationDate} à ${creationHour}`, 455, 144, 7)
+  drawText('Date de création:', 479, 130, 6)
+  drawText(`${creationDate} à ${creationHour}`, 470, 124, 6)
 
   const generatedQR = await generateQR(data)
 
   const qrImage = await pdfDoc.embedPng(generatedQR)
 
   page1.drawImage(qrImage, {
-    x: page1.getWidth() - 170,
-    y: 155,
-    width: 100,
-    height: 100,
+    x: page1.getWidth() - 163,
+    y: 135,
+    width: 98,
+    height: 98,
   })
 
   pdfDoc.addPage()
@@ -197,11 +207,9 @@ function downloadBlob (blob, fileName) {
   link.click()
 }
 
-function getReasons () {
-  const values = $$('input[name="field-reason"]:checked')
-    .map((x) => x.value)
-    .join('-')
-  return values
+function getReason () {
+  const val = $('input[name="field-reason"]:checked').value
+  return val
 }
 
 // see: https://stackoverflow.com/a/32348687/1513045
@@ -241,8 +249,8 @@ $('#generate-btn').addEventListener('click', async (event) => {
   const invalid = validateAriaFields()
   if (invalid) return
 
-  const reasons = getReasons()
-  const pdfBlob = await generatePdf(getProfile(), reasons)
+  const reason = getReason()
+  const pdfBlob = await generatePdf(getProfile(), reason)
 
   const creationInstant = new Date()
   const creationDate = creationInstant.toLocaleDateString('fr-CA')
@@ -303,9 +311,12 @@ const conditions = {
     condition: 'pattern',
     pattern: /\d{4}-\d{2}-\d{2}/g,
   },
-  '#field-heuresortie': {
+  '#field-destinationtown': {
+    condition: 'length',
+  },
+  '#field-destinationcounty': {
     condition: 'pattern',
-    pattern: /\d{2}:\d{2}/g,
+    pattern: /[0-9]{1}[0-9 aAbB]/g,
   },
 }
 

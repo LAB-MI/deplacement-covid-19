@@ -60,3 +60,6 @@
 - New release: 100km
 ## Removed
 - Old pdf
+## [2.1.1] - 2020-05-12
+### Fixes
+- Update pdf

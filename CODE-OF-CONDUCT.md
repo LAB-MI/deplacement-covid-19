@@ -28,7 +28,7 @@ Exemples de comportements non acceptables :
 
 ### Nos responsabilités
 
-Nous nous engageons à étudier les problèmes qui nous sont signalés par le biais des issues du dépôt public [deplacement-covid-19](https://github.com/LAB-MI/deplacement-covid-19/issues). Nous acceptons les contributions par le biais de ces issues ou des pulls requests formulées sur ce même dépôt.
+Nous nous engageons à étudier les problèmes qui nous sont signalés par le biais des issues du dépôt public [deplacement-idf-covid-19](https://github.com/LAB-MI/deplacement-idf-covid-19/issues). Nous acceptons les contributions par le biais de ces issues ou des pulls requests formulées sur ce même dépôt.
 
 Compte tenu de la durée de vie prévisible du générateur d’attestation de déplacement ou de voyage, et afin de rester dans une notion d’aménagement raisonnable, nous ne pourrons prendre en compte l’ensemble des propositions d’améliorations formulées. 
 
@@ -82,7 +82,7 @@ Examples of unacceptable behavior by participants include :
 
 ### Our Responsibilities
 
-We are committed to studying the problems that are brought to our attention through the issues of the public deposit [deplacement-covid-19](https://github.com/LAB-MI/deplacement-covid-19/issues). We accept contributions through these issues or pull requests made on this same repository.
+We are committed to studying the problems that are brought to our attention through the issues of the public deposit [deplacement-idf-covid-19](https://github.com/LAB-MI/deplacement-idf-covid-19/issues). We accept contributions through these issues or pull requests made on this same repository.
 
 Given the foreseeable lifetime of the displacement or travel certificate generator, and in order to remain within the concept of reasonable accommodation, we will not be able to take into account all of the suggestions for improvements made.
 

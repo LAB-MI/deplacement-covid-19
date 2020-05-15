@@ -295,8 +295,13 @@ input:valid+span:after {
 }
 
 .footnote-title {
-  color: #fff;
   font-size: 0.9em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footnote-title {
+    color: #fff;
+  }
 }
 
 .text-alert {

@@ -82,8 +82,6 @@ async function generatePdf (profile, reason) {
     address,
     zipcode,
     town,
-    destinationtown,
-    destinationcounty,
     datesortie,
   } = profile
 
@@ -93,7 +91,7 @@ async function generatePdf (profile, reason) {
     `Prenom: ${firstname}`,
     `Naissance: ${birthday} a ${lieunaissance}`,
     `Adresse: ${address} ${zipcode} ${town}`,
-    `Sortie: ${datesortie} vers ${destinationtown} (${destinationcounty})`,
+    `Sortie: ${datesortie}`,
     `Motifs: ${reason}`,
   ].join(';\n ')
 
@@ -102,12 +100,12 @@ async function generatePdf (profile, reason) {
   const pdfDoc = await PDFDocument.load(existingPdfBytes)
 
   // set pdf metadata
-  pdfDoc.setTitle('COVID-19 - Déclaration de déplacement')
-  pdfDoc.setSubject('Déclaration de déplacement en dehors de son département et à plus de 100 km de son domicile')
+  pdfDoc.setTitle('COVID-19 - Attestation dérogatoire usage des transports publics collectifs en Ile-de-France de 6h30 à 9h30 et de 16h00 à 19h00')
+  pdfDoc.setSubject('Attestation dérogatoire usage des transports publics collectifs en Ile-de-France de 6h30 à 9h30 et de 16h00 à 19h00')
   pdfDoc.setKeywords(['covid19', 'covid-19', 'attestation', 'déclaration', 'déplacement', 'officielle', 'gouvernement'])
   pdfDoc.setProducer('DNUM/SDIT')
   pdfDoc.setCreator('')
-  pdfDoc.setAuthor('Ministère d l\'intérieur')
+  pdfDoc.setAuthor('Préfecture d\'Ile-de-France')
 
   const page1 = pdfDoc.getPages()[0]
 
@@ -116,44 +114,32 @@ async function generatePdf (profile, reason) {
     page1.drawText(text, { x, y, size, font })
   }
 
-  drawText(lastname, 80, 650)
-  drawText(firstname, 105, 625)
-  drawText(`${birthday} à ${lieunaissance}`, 173, 601)
-  drawText(address, 198, 577)
-  drawText(`${zipcode} ${town}`, 50, 557)
-
-  if (reason !== '') {
-    // Date sortie
-    drawText(`${profile.datesortie}`, 139, 521, 11)
-  }
-
-  drawText(destinationtown, 155, 505)
-  drawText(destinationcounty, 470, 505)
-
-  if ($('input[name="field-recurrent"]:checked')) {
-    drawText('x', 508, 518, 20)
-  }
+  drawText(`${lastname} ${firstname}`, 120, 663)
+  drawText(birthday, 109, 649)
+  drawText(lieunaissance, 75, 636)
+  drawText(address, 120, 622)
+  drawText(`${zipcode} ${town}`, 120, 608)
 
   if (reason === 'travail') {
-    drawText('x', 44, 461, 20)
+    drawText('x', 57, 553, 14)
   }
   if (reason === 'ecole') {
-    drawText('x', 44, 428, 20)
+    drawText('x', 57, 512, 14)
   }
   if (reason === 'sante') {
-    drawText('x', 44, 381, 20)
+    drawText('x', 57, 457, 14)
   }
   if (reason === 'famille') {
-    drawText('x', 44, 348, 20)
+    drawText('x', 57, 415, 14)
   }
   if (reason === 'police') {
-    drawText('x', 44, 315, 20)
+    drawText('x', 57, 374, 14)
   }
   if (reason === 'judiciaire') {
-    drawText('x', 44, 267, 20)
+    drawText('x', 57, 318, 14)
   }
   if (reason === 'missions') {
-    drawText('x', 44, 235, 20)
+    drawText('x', 57, 277, 14)
   }
   let locationSize = idealFontSize(font, profile.town, 83, 7, 11)
 
@@ -165,9 +151,12 @@ async function generatePdf (profile, reason) {
     locationSize = 7
   }
 
-  const shortCreationDate = `${creationDate.split('/')[0]}/${creationDate.split('/')[1]}`
-  drawText(profile.town, 74, 195, locationSize)
-  drawText(shortCreationDate, 314, 195, locationSize)
+  drawText(profile.town, 93, 222, locationSize)
+
+  if (reason !== '') {
+    // Date sortie
+    drawText(`${profile.datesortie}`, 75, 194, 11)
+  }
 
   // Date création
   drawText('Date de création:', 479, 130, 6)
@@ -310,13 +299,6 @@ const conditions = {
   '#field-datesortie': {
     condition: 'pattern',
     pattern: /\d{4}-\d{2}-\d{2}/g,
-  },
-  '#field-destinationtown': {
-    condition: 'length',
-  },
-  '#field-destinationcounty': {
-    condition: 'pattern',
-    pattern: /[0-9]{1}[0-9 aAbB]/g,
   },
 }
 

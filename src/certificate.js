@@ -138,22 +138,25 @@ async function generatePdf (profile, reason) {
     drawText('x', 44, 461, 20)
   }
   if (reason === 'ecole') {
-    drawText('x', 44, 428, 20)
+    drawText('x', 44, 432, 20)
   }
   if (reason === 'sante') {
-    drawText('x', 44, 381, 20)
+    drawText('x', 44, 389, 20)
   }
   if (reason === 'famille') {
-    drawText('x', 44, 348, 20)
+    drawText('x', 44, 360, 20)
   }
   if (reason === 'police') {
-    drawText('x', 44, 315, 20)
+    drawText('x', 44, 331, 20)
   }
   if (reason === 'judiciaire') {
-    drawText('x', 44, 267, 20)
+    drawText('x', 44, 287, 20)
   }
   if (reason === 'missions') {
-    drawText('x', 44, 235, 20)
+    drawText('x', 44, 258, 20)
+  }
+  if (reason === 'demenagement') {
+    drawText('x', 44, 229, 20)
   }
   let locationSize = idealFontSize(font, profile.town, 83, 7, 11)
 
@@ -166,8 +169,8 @@ async function generatePdf (profile, reason) {
   }
 
   const shortCreationDate = `${creationDate.split('/')[0]}/${creationDate.split('/')[1]}`
-  drawText(profile.town, 74, 195, locationSize)
-  drawText(shortCreationDate, 314, 195, locationSize)
+  drawText(profile.town, 74, 189, locationSize)
+  drawText(shortCreationDate, 314, 189, locationSize)
 
   // Date création
   drawText('Date de création:', 479, 130, 6)
@@ -178,10 +181,10 @@ async function generatePdf (profile, reason) {
   const qrImage = await pdfDoc.embedPng(generatedQR)
 
   page1.drawImage(qrImage, {
-    x: page1.getWidth() - 163,
-    y: 135,
-    width: 98,
-    height: 98,
+    x: page1.getWidth() - 156,
+    y: 122,
+    width: 92,
+    height: 92,
   })
 
   pdfDoc.addPage()

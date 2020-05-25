@@ -63,3 +63,7 @@
 ## [2.1.1] - 2020-05-12
 ### Fixes
 - Update pdf
+## [2.1.2] - 2020-05-25
+### Fixes
+- Update pdf (case 8: relocation)
+

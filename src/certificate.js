@@ -2,6 +2,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import './main.css'
 
+import 'whatwg-fetch'
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+
 import { PDFDocument, StandardFonts } from 'pdf-lib'
 import QRCode from 'qrcode'
 
